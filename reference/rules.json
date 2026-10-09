@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "_doc": {
+    "purpose": "Implementation recommendations for the SOW phase builder. The screen evaluates these rules against the currently selected SKUs and their phase assignments, and shows recommendations/warnings.",
+    "matching": "A rule token matches a selected SKU when either string contains the other (case-insensitive). Use the shortest distinctive token.",
+    "rule_types": {
+      "recommend_together": "If ANY token in `skus` is selected, suggest adding the others. Fields: skus[], message, severity(info).",
+      "requires": "If `sku` is selected, `requires` tokens should also be selected (ideally in the same or an earlier phase). Fields: sku, requires[], message, severity(warn).",
+      "avoid_together": "If 2+ tokens in `skus` are selected, warn (often mutually exclusive). Fields: skus[], message, severity(warn).",
+      "phase_order": "`sku` should be implemented in a phase at or before the phase of any `before` token. Fields: sku, before[], message, severity(warn).",
+      "section_include_only": "Within the named CPQ `section`, keep ONLY the SKUs matching a `keep` token; drop the rest during extraction. Fields: section, keep[], message, severity(info).",
+      "solution_outline": "If one of the rule's `match` tokens matches a selected SKU, insert the rule's `outline` bullets under the 'Solution Outline - Phase N' heading of the phase that contains the SKU (earliest such phase). `when`: 'present' (default) or 'sole_solution' (fire only when the matched SKU is the ONLY Solutions-category SKU in the deal). `outline` is a list of {level, text} (level 0-based indent) or plain strings. Fields: sku, match[], when, outline[], message, severity. This rule type drives the Word document only; the phase-builder screen ignores it."
+    },
+    "how_to_extend": "Add objects to `rules`. Keep tokens aligned with SKU names in products.json. Severity is one of: info, warn."
+  },
+  "rules": [
+    {
+      "type": "section_include_only",
+      "section": "Platform",
+      "keep": [
+        "Digital Conversations Platform",
+        "Eltropy Unified Conversations Platform"
+      ],
+      "message": "From the Platform section, include only the Digital Conversations Platform SKU. SSO, APIs Only, and sFTP are platform components and are not listed as separate SOW line items.",
+      "severity": "info"
+    },
+    {
+      "type": "phase_order",
+      "sku": "Eltropy Unified Conversations Platform",
+      "before": [
+        "Solutions",
+        "Integrations"
+      ],
+      "message": "The core Platform should be implemented in the earliest phase, before solutions and integrations that depend on it.",
+      "severity": "warn"
+    },
+    {
+      "type": "requires",
+      "sku": "(Online) Banking Communication Integration",
+      "requires": [
+        "Single Sign-On"
+      ],
+      "message": "Online Banking integrations rely on SSO for authenticated launch \u2014 include Single Sign-On (SSO) in the same or an earlier phase.",
+      "severity": "warn"
+    },
+    {
+      "type": "requires",
+      "sku": "Microsoft Teams App Integration",
+      "requires": [
+        "Single Sign-On"
+      ],
+      "message": "The Microsoft Teams integration requires SSO \u2014 include Single Sign-On (SSO).",
+      "severity": "warn"
+    },
+    {
+      "type": "requires",
+      "sku": "Eltropy eSignature",
+      "requires": [
+        "Text Messaging",
+        "Secure Chat",
+        "Remote Video Banking"
+      ],
+      "message": "eSignature needs at least one channel subscription (Text, Chat, or Video) to send documents for signature.",
+      "severity": "warn"
+    },
+    {
+      "type": "recommend_together",
+      "skus": [
+        "Voice+",
+        "Conversation Intelligence - Voice"
+      ],
+      "message": "Voice+ pairs well with Conversation Intelligence - Voice to transcribe and QA recorded calls.",
+      "severity": "info"
+    },
+    {
+      "type": "recommend_together",
+      "skus": [
+        "AI Virtual Agents - Voice",
+        "Voice+"
+      ],
+      "message": "AI Virtual Agents - Voice works best alongside Voice+ (or a third-party ACD via SIP) for call routing.",
+      "severity": "info"
+    },
+    {
+      "type": "recommend_together",
+      "skus": [
+        "Text Messaging",
+        "Conversation Intelligence - Text"
+      ],
+      "message": "Add Conversation Intelligence - Text to score and analyze the text engagements you enable with Text Messaging.",
+      "severity": "info"
+    },
+    {
+      "type": "avoid_together",
+      "skus": [
+        "IllumaSHIELD - Full Suite",
+        "IllumaSHIELD - Limited Features"
+      ],
+      "message": "IllumaSHIELD Full Suite and Limited Features are mutually exclusive \u2014 choose one.",
+      "severity": "warn"
+    },
+    {
+      "type": "avoid_together",
+      "skus": [
+        "AI Virtual Agents - Chat FAQ",
+        "AI Virtual Agents - Chat"
+      ],
+      "message": "AI Virtual Agents - Chat already includes FAQ handling; the separate Chat FAQ SKU is usually redundant when full Chat is selected.",
+      "severity": "warn"
+    },
+    {
+      "type": "requires",
+      "sku": "Voice+",
+      "requires": [
+        "Office Phones",
+        "MS Teams Integration - Non SBC"
+      ],
+      "message": "Voice+ requires either Office Phones or MS Teams Integration - Non SBC to route and handle inbound calls \u2014 include at least one.",
+      "severity": "warn"
+    },
+    {
+      "type": "solution_outline",
+      "sku": "AI Virtual Agents - Voice",
+      "match": [
+        "AI Virtual Agents - Voice",
+        "AI Agents-Voice",
+        "AI Agents - Voice",
+        "AI Agent-Voice",
+        "AI Agent Voice",
+        "AI Voice"
+      ],
+      "when": "sole_solution",
+      "severity": "info",
+      "message": "Voice-only deployment: AI Agent - Voice call-center integration outline added to the Solution Outline.",
+      "outline": [
+        {
+          "level": 0,
+          "text": "AI Agent- Voice"
+        },
+        {
+          "level": 1,
+          "text": "Call Center Integration:"
+        },
+        {
+          "level": 2,
+          "text": "If client would like to use their existing number (main line) for AI Voice, Eltropy can port that number to Twilio. If client would not like to port, Eltropy can support call forwarding from mainline to Eltropy procure phone number."
+        },
+        {
+          "level": 2,
+          "text": "Initial Calls would be presented to Eltropy, and if the caller selected an option to transfer to an agent, the call would be transferred to the Call Center number(s)"
+        },
+        {
+          "level": 3,
+          "text": "Note: Members may be Authenticated via the AI voice for Transactional Queries. However, Authenticated Calls that ask to speak to an agent will arrive WITHOUT Verification."
+        },
+        {
+          "level": 2,
+          "text": "To reach staff in the back office, Members can call the AI Voice Agent (or reach the main queue) to be transferred to back-office extensions via SIP (Session Initiation Protocol). Eltropy will execute a SIP Transfer into the client's Zoom instance."
+        }
+      ]
+    },
+    {
+      "type": "solution_outline",
+      "sku": "Eltropy Payments",
+      "match": [
+        "Eltropy Payments"
+      ],
+      "when": "present",
+      "severity": "info",
+      "message": "Eltropy Payments is included: payment cutoff time and Nuvei settlement terms added to the Solution Outline.",
+      "outline": [
+        {
+          "level": 0,
+          "text": "Eltropy Payments"
+        },
+        {
+          "level": 1,
+          "text": "All payments collected will have the cutoff time of 3 PM Eastern Standard Time"
+        },
+        {
+          "level": 1,
+          "text": "Payments made after 3 PM ET, will be processed next business day"
+        },
+        {
+          "level": 1,
+          "text": "Settlement funds will be sent by Nuvei, mapped either to a checking or savings account as defined by credit union during the processor setup."
+        }
+      ]
+    }
+  ]
+}

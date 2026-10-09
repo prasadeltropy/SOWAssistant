@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*~
+
+# Local CPQ inputs and generated SOW outputs (not source)
+cpq.xlsx
+phase_config*.json
+enriched_config*.json
+sow_data.json
+config_b64.txt
+SOW - *.docx
+~$*.docx
+artifact.html
+/tmp/
+
+# Packaged skill bundle (build artifact; duplicates the unpacked source in this repo)
+*.skill

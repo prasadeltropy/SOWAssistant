@@ -1,0 +1,607 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Eltropy SOW Phase Builder</title>
+<style>
+
+:root { color-scheme: light; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#f5f5f5; color:#333; padding:20px; }
+.container { max-width:1500px; margin:0 auto; }
+h1 { font-size:26px; margin-bottom:18px; color:#0066cc; }
+.panel { background:white; border-radius:8px; padding:18px; margin-bottom:18px; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
+.panel h2 { font-size:15px; font-weight:600; margin-bottom:12px; color:#333; border-bottom:2px solid #0066cc; padding-bottom:8px; }
+.setup-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.people-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.people-col { border:1px solid #e2e8f0; border-radius:6px; padding:12px; background:#fafcff; }
+.people-col .role { font-weight:600; font-size:13px; margin-bottom:10px; color:#0066cc; }
+.fld { display:flex; flex-direction:column; }
+label { font-weight:500; margin-bottom:5px; font-size:13px; }
+input, select { padding:9px; border:1px solid #ccc; border-radius:4px; font-size:14px; }
+input:focus, select:focus { outline:none; border-color:#0066cc; box-shadow:0 0 0 3px rgba(0,102,204,0.1); }
+button { padding:9px 15px; background:#0066cc; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:500; font-size:14px; }
+button:hover { background:#0052a3; }
+button:disabled { background:#ccc; cursor:not-allowed; }
+.status { padding:9px; border-radius:4px; margin-top:9px; font-size:13px; }
+.status.success { background:#e8f5e9; color:#2e7d32; border:1px solid #2e7d32; }
+.status.error { background:#ffebee; color:#c62828; border:1px solid #c62828; }
+.status.info { background:#e3f2fd; color:#1565c0; border:1px solid #1565c0; }
+.list-container { max-height:180px; overflow-y:auto; border:1px solid #ddd; border-radius:4px; margin-top:9px; }
+.list-item { padding:9px; border-bottom:1px solid #eee; cursor:pointer; }
+.list-item:hover { background:#f5f5f5; }
+.list-item.selected { background:#e3f2fd; border-left:3px solid #0066cc; }
+.spinner { display:inline-block; margin-left:8px; color:#0066cc; }
+.sku-row { display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border-bottom:1px solid #eee; gap:12px; }
+.sku-row:hover { background:#fafafa; }
+.sku-name { font-size:13px; flex:1; }
+.sku-cat { font-size:11px; color:#888; margin-left:6px; }
+.phase-btns { display:flex; gap:6px; flex-shrink:0; }
+.phase-btn { min-width:34px; height:30px; padding:0 6px; background:#eef2f7; color:#333; border:1px solid #cbd5e1; border-radius:5px; font-size:13px; font-weight:600; }
+.phase-btn:hover { background:#dbe7f5; }
+.phase-btn.active { background:#0066cc; color:white; border-color:#0066cc; }
+.phases-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+.phase-box { border:2px solid #0066cc; border-radius:8px; padding:14px; background:#f9fbff; }
+.phase-box h3 { font-size:14px; color:#0066cc; margin-bottom:10px; }
+.pin { display:grid; gap:6px; margin-bottom:10px; }
+.pin input { font-size:12px; padding:6px; }
+.pin label { font-size:11px; margin-bottom:2px; }
+.psku { background:#e3f2fd; border:1px solid #b6d4f2; border-radius:4px; padding:6px 8px; margin-bottom:5px; font-size:12px; }
+.pempty { color:#999; font-size:12px; text-align:center; padding:14px 0; }
+.rules-list .r { padding:8px 10px; border-radius:5px; margin-bottom:6px; font-size:12px; }
+.rules-list .warn { background:#fff4e5; border:1px solid #f0b429; color:#8a5a00; }
+.rules-list .info { background:#e7f3ff; border:1px solid #7fb2e6; color:#15507d; }
+.rules-list .ok { background:#e8f5e9; border:1px solid #2e7d32; color:#2e7d32; }
+/* ADDED: drag-and-drop, auto-recommend, business outcomes */
+.psku[draggable=true], .sku-row[draggable=true] { cursor:grab; }
+.phase-box.drop { outline:3px dashed #0066cc; outline-offset:2px; background:#eef6ff; }
+.btn-light { background:#eef2f7; color:#333; border:1px solid #cbd5e1; }
+.btn-light:hover { background:#dbe7f5; }
+.chk { flex-direction:row; align-items:center; gap:6px; font-weight:400; font-size:12px; margin-top:6px; }
+.chk input { padding:0; }
+.bo-row { display:grid; grid-template-columns:1fr 1fr 36px; gap:10px; margin-bottom:8px; }
+.bo-row button { padding:0; }
+.sub-h { font-size:13px; font-weight:600; margin:14px 0 8px; color:#0066cc; }
+.hint { font-weight:400; font-size:12px; color:#888; }
+
+</style>
+<script>
+__READER__
+</script>
+</head>
+<body>
+
+<div class="container">
+<h1>Eltropy SOW Phase Builder</h1>
+<div class="panel">
+  <h2>1. CPQ &amp; Opportunity</h2>
+  <div class="setup-grid">
+    <div class="fld"><label>CPQ Google Sheet URL / File ID</label><input type="text" id="cpqInput" placeholder="Paste link or ID..."></div>
+    <div class="fld"><label>Search Drive</label><input type="text" id="cpqSearch" placeholder="Search by name..."></div>
+    <div class="fld"><label>&nbsp;</label><button onclick="searchCPQ()">Search CPQ</button><span class="spinner" id="cpqSpinner" style="display:none;">Loading...</span></div>
+    <div class="fld"><label>&nbsp;</label><button onclick="loadCPQ()" style="background:#4caf50;">Load CPQ</button></div>
+  </div>
+  <div class="list-container" id="cpqList" style="display:none;"></div>
+  <div id="cpqStatus" class="status" style="display:none;"></div>
+  <div class="setup-grid" style="margin-top:14px;">
+    <div class="fld"><label>Customer (from CPQ; click a Salesforce match below to use the Account name instead)</label><input type="text" id="customerName" placeholder="Auto-fills..."></div>
+    <div class="fld"><label>&nbsp;</label><button onclick="searchOpportunities()">Search Opportunities</button><span class="spinner" id="oppSpinner" style="display:none;">Loading...</span>
+      <label class="fld chk"><input type="checkbox" id="oppIncludeClosed" onchange="searchOpportunities()"> Include closed opportunities</label></div>
+    <div class="fld"><label>Package (from CPQ Row 15)</label><select id="packageSelect" onchange="onPackageChange()"><option value="">-- Select --</option></select></div>
+    <div class="fld"><label>&nbsp;</label><button onclick="startBuilder()">Load SKUs</button></div>
+  </div>
+  <div class="list-container" id="oppList" style="display:none;"></div>
+  <div id="oppStatus" class="status" style="display:none;"></div>
+</div>
+<div class="panel" id="peoplePanel" style="display:none;">
+  <h2>1b. Contacts &amp; People <span class="hint">— auto-filled when you select a Salesforce opportunity; type or edit any field before generating the SOW</span></h2>
+  <div class="people-grid">
+    <div class="people-col">
+      <div class="role">Business Sponsor (Account Project Sponsor)</div>
+      <div class="fld"><label>Name</label><input type="text" id="sponsorName" placeholder="Sponsor name"></div>
+      <div class="fld" style="margin-top:8px;"><label>Email</label><input type="text" id="sponsorEmail" placeholder="name@customer.com"></div>
+      <div class="fld" style="margin-top:8px;"><label>Phone</label><input type="text" id="sponsorPhone" placeholder="Phone"></div>
+    </div>
+    <div class="people-col">
+      <div class="role">Account Executive (AE)</div>
+      <div class="fld"><label>Name</label><input type="text" id="aeName" placeholder="AE name"></div>
+      <div class="fld" style="margin-top:8px;"><label>Email</label><input type="text" id="aeEmail" placeholder="ae@eltropy.com"></div>
+      <div class="fld" style="margin-top:8px;"><label>Phone</label><input type="text" id="aePhone" placeholder="Phone"></div>
+    </div>
+    <div class="people-col">
+      <div class="role">Solution Engineer (SE of Record)</div>
+      <div class="fld"><label>Name</label><input type="text" id="seName" placeholder="SE name"></div>
+      <div class="fld" style="margin-top:8px;"><label>Email</label><input type="text" id="seEmail" placeholder="se@eltropy.com"></div>
+      <div class="fld" style="margin-top:8px;"><label>Phone</label><input type="text" id="sePhone" placeholder="Phone"></div>
+    </div>
+  </div>
+  <div id="peopleStatus" class="status" style="display:none;"></div>
+</div>
+<!-- ADDED: 1c. Business Problems & Desired Outcomes (discovery document) -->
+<div class="panel" id="boPanel" style="display:none;">
+  <h2>1c. Business Problems &amp; Desired Outcomes <span class="hint">— fill from a discovery document, or type them in; these populate the SOW's Business Problems &amp; Desired Outcomes table</span></h2>
+  <div class="setup-grid">
+    <div class="fld"><label>Discovery document (Google Doc URL / File ID)</label><input type="text" id="discInput" placeholder="Paste link or ID..."></div>
+    <div class="fld"><label>Search Drive</label><input type="text" id="discSearch" placeholder="Search by name..."></div>
+    <div class="fld"><label>&nbsp;</label><button onclick="searchDiscovery()">Search Docs</button><span class="spinner" id="discSpinner" style="display:none;">Loading...</span></div>
+    <div class="fld"><label>&nbsp;</label><button onclick="fillFromDiscovery()" style="background:#4caf50;">Fill from Document</button></div>
+  </div>
+  <div class="list-container" id="discList" style="display:none;"></div>
+  <div id="discStatus" class="status" style="display:none;"></div>
+  <div class="sub-h">Problem / area of innovation &nbsp;→&nbsp; Desired outcome</div>
+  <div id="boRows"></div>
+  <button class="btn-light" onclick="addBORow()">+ Add row</button>
+</div>
+<div id="builderSection" style="display:none;">
+  <div class="panel">
+    <h2>2. Phases</h2>
+    <div class="fld" style="max-width:220px;"><label>Number of phases</label><input type="number" id="numPhases" min="1" max="8" value="3" onchange="onNumPhasesChange()"></div>
+    <!-- ADDED: Auto-Recommend Phasing -->
+    <div class="sub-h">Auto-recommend phases <span class="hint">— sequences the SKUs by dependencies, must-pair groups, capacity and vendor lead time, and fills the phase dates. Adjust afterwards by dragging SKUs between phase boxes or with the phase buttons.</span></div>
+    <div class="setup-grid">
+      <div class="fld"><label>Project start date</label><input type="date" id="apStart"></div>
+      <div class="fld"><label>Phase capacity</label><input type="number" id="apCap" min="1" value="__PHASE_CAP__"></div>
+      <div class="fld"><label>Concurrent limit</label><input type="number" id="apConc" min="1" value="__CONC_CAP__"></div>
+      <div class="fld"><label>&nbsp;</label><button onclick="runAutoPhase()">⚡ Auto-recommend phases</button></div>
+    </div>
+    <div id="apStatus" class="status" style="display:none;"></div>
+  </div>
+  <div class="panel"><h2>3. Assign each SKU to a phase</h2><div id="skuAlloc"></div></div>
+  <div class="panel"><h2>Recommendations &amp; checks</h2><div class="rules-list" id="rulesList"></div>
+    <div class="sub-h">Phasing checks <span class="hint">— re-run after every change</span></div><div class="rules-list" id="apChecks"></div></div>
+  <div class="panel"><h2>4. Phases built <span class="hint">— drag a SKU onto another phase to move it</span></h2><div class="phases-grid" id="phasesGrid"></div></div>
+  <div style="display:flex; justify-content:flex-end; gap:10px;"><button id="genBtn" onclick="generateSOW()">Generate SOW</button></div>
+  <div id="genStatus" class="status" style="display:none;"></div>
+</div>
+</div>
+
+<script>
+__ENGINE__
+</script>
+<script>
+
+const DRIVE_SEARCH='__DRIVE_SEARCH_TOOL__';
+const DRIVE_DL='__DRIVE_DL_TOOL__';
+const DRIVE_CREATE='__DRIVE_CREATE_TOOL__';
+const SF_QUERY='__SF_TOOL__';
+const BUILD_TASK='__BUILD_TASK__';
+const RULES = __RULES__;
+
+let selectedCPQ=null, selectedOpportunity=null, parsedRows=null;
+let allSKUs=[];        // [{name,category}]
+let skuPhase={};       // {name: phaseNum}
+let phaseMeta={};      // {phaseNum:{start,end,pm}}
+let numPhases=3;
+const packageCols={};
+const SECTION_KEEP=__SECTION_KEEP__;
+let selectedDiscovery=null;                 // ADDED: {id,title}
+let boRows=[{problem:'',outcome:''}];       // ADDED: business problems & outcomes
+
+function unwrap(r){ return r.structuredContent ?? JSON.parse(r.content[0].text); }
+function norm(s){ return (s||'').toLowerCase().replace(/\s+/g,''); }
+function showStatus(id,msg,type){ const el=document.getElementById(id); el.textContent=msg; el.className='status '+type; el.style.display=msg?'block':'none'; }
+function extractId(u){ return (u.match(/\/d\/([a-zA-Z0-9-_]+)/)||[])[1] || u; }
+function isIncluded(v){ return ['included','yes','y','true','x'].includes((v||'').toLowerCase().trim()); }
+function val(id){ const el=document.getElementById(id); return el?(el.value||'').trim():''; }
+function setVal(id,v){ const el=document.getElementById(id); if(el) el.value=(v==null?'':v); }
+function soqlEsc(s){ return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }   // ADDED
+function driveEsc(s){ return String(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }  // ADDED
+
+async function searchCPQ(){
+  const q=document.getElementById('cpqSearch').value; if(!q) return;
+  document.getElementById('cpqSpinner').style.display='inline';
+  try{
+    const r=await window.cowork.callMcpTool(DRIVE_SEARCH,{query:"mimeType = 'application/vnd.google-apps.spreadsheet' and title contains '"+driveEsc(q)+"'"});
+    const files=unwrap(r).files||[]; const c=document.getElementById('cpqList'); c.innerHTML=''; c.style.display='block';
+    files.forEach(f=>{ const it=document.createElement('div'); it.className='list-item'; it.textContent=f.title;
+      it.onclick=()=>{ selectedCPQ={id:f.id,title:f.title}; document.querySelectorAll('#cpqList .list-item').forEach(e=>e.classList.remove('selected')); it.classList.add('selected'); showStatus('cpqStatus','Selected: '+f.title,'success'); };
+      c.appendChild(it); });
+    if(!files.length) showStatus('cpqStatus','No files found. Paste a link instead.','info');
+  }catch(e){ showStatus('cpqStatus','Error: '+e.message,'error'); }
+  finally{ document.getElementById('cpqSpinner').style.display='none'; }
+}
+
+async function loadCPQ(){
+  const url=document.getElementById('cpqInput').value;
+  if(url && !selectedCPQ) selectedCPQ={id:extractId(url),title:'Pasted CPQ'};
+  if(!selectedCPQ){ showStatus('cpqStatus','Select or paste a CPQ','error'); return; }
+  showStatus('cpqStatus','Downloading & parsing CPQ...','info');
+  try{
+    const c=await window.cowork.callMcpTool(DRIVE_DL,{fileId:selectedCPQ.id, exportMimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    const data=unwrap(c); const b64=data.content||data.base64Content;
+    if(!b64) throw new Error('No file content (CPQ may be too large).');
+    parsedRows=self.xlsxlite.readQuote(b64);
+    document.getElementById('customerName').value=((parsedRows[2]&&parsedRows[2].C)||'').trim();
+    const r15=parsedRows[15]||{};
+    const sel=document.getElementById('packageSelect'); sel.innerHTML='<option value="">-- Select --</option>';
+    [['E',r15.E||'Essentials'],['F',r15.F||'Enterprise'],['G',r15.G||'Eltropy One']].forEach(([col,label],i)=>{
+      const key='pkg'+i; packageCols[key]=col;
+      const o=document.createElement('option'); o.value=key; o.textContent=(label||'').trim()||col; sel.appendChild(o);
+    });
+    showStatus('cpqStatus','CPQ loaded. Customer: '+(document.getElementById('customerName').value||'(empty)')+'. Pick a package, then Load SKUs.','success');
+    // ADDED: contacts + business outcomes are editable as soon as a CPQ is loaded,
+    // and open Salesforce opportunities for the CPQ's customer are pulled automatically.
+    document.getElementById('peoplePanel').style.display='block';
+    document.getElementById('boPanel').style.display='block';
+    renderBO();
+    selectedOpportunity=null;
+    searchOpportunities(true);
+  }catch(e){ showStatus('cpqStatus','Error: '+e.message,'error'); }
+}
+
+function onPackageChange(){
+  const pkg=document.getElementById('packageSelect').value;
+  if(!pkg||!parsedRows){ allSKUs=[]; return; }
+  const col=packageCols[pkg];
+  const skip=['platform','solutions','integrations','bundles & misc','included limited usage'];
+  const SECTIONS=['Platform','Solutions','Integrations','Bundles & Misc'];
+  allSKUs=[]; let cur=null;
+  for(let r=16;r<=200;r++){
+    const row=parsedRows[r]; if(!row) continue;
+    const b=(row.B||'').trim();
+    if(SECTIONS.includes(b)) cur=b;
+    if(b==='Included Limited Usage'||/List Price|Discount/i.test(b)) break;
+    const name=(row.C||'').trim(); const val=(row[col]||'').trim();
+    if(!name||skip.includes(name.toLowerCase())) continue;
+    if(!isIncluded(val)) continue;
+    const keep=SECTION_KEEP[cur];
+    if(keep){ const nm=norm(name); if(!keep.some(k=>k&&(nm.includes(norm(k))||norm(k).includes(nm)))) continue; }
+    allSKUs.push({name, category:cur||'Solutions'});
+  }
+}
+
+async function searchOpportunities(auto){
+  const cn=document.getElementById('customerName').value;
+  if(!cn){ if(auto!==true) showStatus('oppStatus','Enter/load a customer name first','error'); return; }
+  document.getElementById('oppSpinner').style.display='inline';
+  try{
+    const coreRaw=cn.replace(/\(.*\)/,'').trim(); const core=soqlEsc(coreRaw);
+    const incClosed=document.getElementById('oppIncludeClosed').checked;   // ADDED: open-only by default
+    const q="SELECT Id, Name, Account.Name, StageName, CloseDate FROM Opportunity WHERE (Name LIKE '%"+core+"%' OR Account.Name LIKE '%"+core+"%')"
+      +(incClosed?"":" AND IsClosed = false")+" ORDER BY CloseDate DESC LIMIT 20";
+    const r=await window.cowork.callMcpTool(SF_QUERY,{q});
+    const recs=unwrap(r).records||[]; const c=document.getElementById('oppList'); c.innerHTML=''; c.style.display='block';
+    recs.forEach(o=>{ const it=document.createElement('div'); it.className='list-item';
+      const nm=document.createElement('strong'); nm.textContent=o.Name; const br=document.createElement('br');
+      const sm=document.createElement('small'); sm.textContent=(o.Account?o.Account.Name:'')+(o.StageName?' · '+o.StageName:'')+(o.CloseDate?' · closes '+o.CloseDate:'');
+      it.appendChild(nm); it.appendChild(br); it.appendChild(sm);
+      it.onclick=()=>{
+        selectedOpportunity=o;
+        document.querySelectorAll('#oppList .list-item').forEach(e=>e.classList.remove('selected'));
+        it.classList.add('selected');
+        const acctName = o.Account && o.Account.Name;
+        if(acctName){ document.getElementById('customerName').value = acctName; }
+        showStatus('oppStatus','Selected: '+o.Name+(acctName?' — customer set to "'+acctName+'" from the Salesforce account.':' (no Account name on this opportunity; customer left as-is).'),'success');
+        loadPeople(o.Id);
+      };
+      c.appendChild(it); });
+    if(!recs.length) c.style.display='none';
+    const kind=incClosed?'':'open ';
+    showStatus('oppStatus', recs.length
+      ? ('Found '+recs.length+' '+kind+'opportunit'+(recs.length===1?'y':'ies')+' for "'+coreRaw+'" — click one to link it (its Salesforce account name becomes the customer).')
+      : ('No '+kind+'opportunities matched "'+coreRaw+'".'+(incClosed?'':' Tick "Include closed opportunities"')+' or edit the customer name and click Search Opportunities (optional).'),
+      recs.length?'success':'info');
+  }catch(e){ showStatus('oppStatus','Error: '+e.message,'error'); }
+  finally{ document.getElementById('oppSpinner').style.display='none'; }
+}
+
+// Pull the AE (Owner), Business Sponsor (Primary Contact), and SE (SE of Record) from
+// the selected opportunity and pre-fill the editable Contacts panel. Every field stays
+// editable so the user can correct or fill anything Salesforce doesn't have.
+// SE of Record (SE_of_Record__c) is a name string, so we resolve it against the User
+// object to fill the SE email/phone.
+async function loadPeople(oppId){
+  const panel=document.getElementById('peoplePanel'); panel.style.display='block';
+  showStatus('peopleStatus','Loading contacts from Salesforce...','info');
+  // clear prior values so a re-selection doesn't leave stale data
+  ['sponsorName','sponsorEmail','sponsorPhone','aeName','aeEmail','aePhone','seName','seEmail','sePhone'].forEach(id=>setVal(id,''));
+  try{
+    const q="SELECT Owner.Name, Owner.Email, Owner.Phone, "
+      +"Account.Project_Sponsor__r.Name, Account.Project_Sponsor__r.Email, Account.Project_Sponsor__r.Phone, "
+      +"SE_of_Record__c "
+      +"FROM Opportunity WHERE Id = '"+soqlEsc(oppId)+"' LIMIT 1";
+    const r=await window.cowork.callMcpTool(SF_QUERY,{q});
+    const rec=(unwrap(r).records||[])[0]||{};
+    const ow=rec.Owner||{}, pc=(rec.Account&&rec.Account.Project_Sponsor__r)||{};
+    setVal('aeName',ow.Name); setVal('aeEmail',ow.Email); setVal('aePhone',ow.Phone);
+    setVal('sponsorName',pc.Name); setVal('sponsorEmail',pc.Email); setVal('sponsorPhone',pc.Phone);
+    // SE of Record is a text name; look up the matching active User for email + phone.
+    const seName=(rec.SE_of_Record__c||'').trim();
+    setVal('seName',seName);
+    if(seName){
+      try{
+        const esc=seName.replace(/'/g,"\\'");
+        const ur=await window.cowork.callMcpTool(SF_QUERY,{q:"SELECT Name, Email, Phone FROM User WHERE Name = '"+esc+"' AND IsActive = true LIMIT 1"});
+        const u=(unwrap(ur).records||[])[0];
+        if(u){ setVal('seEmail',u.Email); setVal('sePhone',u.Phone); }
+      }catch(seErr){ /* leave SE email/phone blank if the User lookup fails */ }
+    }
+    const missing=[];
+    if(!pc.Name) missing.push('Business Sponsor');
+    if(!seName) missing.push('SE of Record');
+    if(missing.length){
+      showStatus('peopleStatus','Contacts loaded. Not set on this opportunity: '+missing.join(', ')+' — please fill these in manually below. Edit any field as needed.','info');
+    } else {
+      showStatus('peopleStatus','Contacts loaded from Salesforce (SE from "SE of Record"). Edit any field before generating.','success');
+    }
+  }catch(e){ showStatus('peopleStatus','Could not load contacts from Salesforce ('+e.message+'). Enter them manually below.','error'); }
+}
+
+// ===== ADDED: Business Problems & Desired Outcomes (discovery document) =====
+function renderBO(){
+  const c=document.getElementById('boRows'); c.innerHTML='';
+  if(!boRows.length) boRows.push({problem:'',outcome:''});
+  boRows.forEach((row,i)=>{
+    const d=document.createElement('div'); d.className='bo-row';
+    const p=document.createElement('input'); p.type='text'; p.placeholder='Business problem / area of innovation'; p.value=row.problem||'';
+    p.oninput=e=>{ boRows[i].problem=e.target.value; };
+    const o=document.createElement('input'); o.type='text'; o.placeholder='Desired outcome'; o.value=row.outcome||'';
+    o.oninput=e=>{ boRows[i].outcome=e.target.value; };
+    const x=document.createElement('button'); x.className='btn-light'; x.textContent='×'; x.title='Remove row';
+    x.onclick=()=>{ boRows.splice(i,1); renderBO(); };
+    d.appendChild(p); d.appendChild(o); d.appendChild(x); c.appendChild(d);
+  });
+}
+function addBORow(){ boRows.push({problem:'',outcome:''}); renderBO(); }
+
+async function searchDiscovery(){
+  const q=document.getElementById('discSearch').value; if(!q) return;
+  document.getElementById('discSpinner').style.display='inline';
+  try{
+    const r=await window.cowork.callMcpTool(DRIVE_SEARCH,{query:"mimeType = 'application/vnd.google-apps.document' and title contains '"+driveEsc(q)+"'"});
+    const files=unwrap(r).files||[]; const c=document.getElementById('discList'); c.innerHTML=''; c.style.display=files.length?'block':'none';
+    files.forEach(f=>{ const it=document.createElement('div'); it.className='list-item'; it.textContent=f.title;
+      it.onclick=()=>{ selectedDiscovery={id:f.id,title:f.title}; document.querySelectorAll('#discList .list-item').forEach(e=>e.classList.remove('selected')); it.classList.add('selected'); showStatus('discStatus','Selected: '+f.title+' — click Fill from Document.','success'); };
+      c.appendChild(it); });
+    if(!files.length) showStatus('discStatus','No Google Docs found. Paste a link instead.','info');
+  }catch(e){ showStatus('discStatus','Error: '+e.message,'error'); }
+  finally{ document.getElementById('discSpinner').style.display='none'; }
+}
+
+function b64ToText(b64){ const bin=atob(b64); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return new TextDecoder('utf-8').decode(u); }
+
+// Deterministic fallback: "Problem: ... / Outcome: ..." pairs, or "problem | outcome" / tab-separated lines
+// found under a "Business Problems" heading.
+function parseBOText(txt){
+  const lines=txt.split(/\r?\n/).map(s=>s.trim()).filter(Boolean); const out=[]; let cur=null;
+  lines.forEach(l=>{
+    let m=l.match(/^(?:business\s+)?(?:problem|challenge|pain\s*point|area of innovation)s?\s*[:\-–]\s*(.+)$/i);
+    if(m){ cur={problem:m[1].trim(),outcome:''}; out.push(cur); return; }
+    m=l.match(/^(?:desired\s+)?outcomes?\s*[:\-–]\s*(.+)$/i);
+    if(m){ if(cur&&!cur.outcome) cur.outcome=m[1].trim(); else out.push({problem:'',outcome:m[1].trim()}); return; }
+  });
+  if(out.length) return out;
+  const start=lines.findIndex(l=>/business problems?/i.test(l));
+  if(start>=0){ for(let i=start+1;i<lines.length&&out.length<12;i++){ const parts=lines[i].split(/\t|\s\|\s/); if(parts.length>=2) out.push({problem:parts[0].trim(),outcome:parts[1].trim()}); else if(out.length) break; } }
+  return out;
+}
+
+async function fillFromDiscovery(){
+  const url=document.getElementById('discInput').value.trim();
+  if(url) selectedDiscovery={id:extractId(url),title:(selectedDiscovery&&selectedDiscovery.id===extractId(url))?selectedDiscovery.title:'Pasted discovery document'};
+  if(!selectedDiscovery){ showStatus('discStatus','Select or paste a discovery document first.','error'); return; }
+  showStatus('discStatus','Reading the discovery document...','info');
+  try{
+    const r=await window.cowork.callMcpTool(DRIVE_DL,{fileId:selectedDiscovery.id, exportMimeType:'text/plain'});
+    const d=unwrap(r); const b64=d.content||d.base64Content;
+    if(!b64) throw new Error('No document content returned.');
+    if(d.mimeType && !/google-apps\.document|text\/plain/.test(d.mimeType)) throw new Error('Only Google Docs can be read here — convert the file to a Google Doc or type the rows.');
+    if(d.title) selectedDiscovery.title=d.title;
+    const txt=b64ToText(b64).slice(0,60000);
+    let pairs=[];
+    if(window.cowork && typeof window.cowork.askClaude==='function'){
+      showStatus('discStatus','Extracting business problems and outcomes...','info');
+      const prompt='From the discovery document provided, extract the client\'s business problems (or areas of innovation) and the desired outcome for each, for the "Client Business Problems and Desired Outcomes" table of a Statement of Work. '
+        +'Use only what the document states; do not invent anything. Keep each entry under 30 words. Leave out personal information (names, emails, phone numbers, account or card numbers). '
+        +'Return ONLY a JSON array like [{"problem":"...","outcome":"..."}] with at most 10 items, or [] if the document has none.';
+      try{
+        const res=await window.cowork.askClaude(prompt,[txt]);
+        const s=typeof res==='string'?res:(res&&(res.text||res.content||res.result))||JSON.stringify(res||'');
+        const m=String(s).match(/\[[\s\S]*\]/); if(m) pairs=JSON.parse(m[0]);
+      }catch(aiErr){ pairs=[]; }
+    }
+    if(!pairs.length) pairs=parseBOText(txt);
+    pairs=(pairs||[]).map(p=>({problem:String(p.problem||'').trim(),outcome:String(p.outcome||'').trim()})).filter(p=>p.problem||p.outcome);
+    if(!pairs.length){ showStatus('discStatus','Linked "'+selectedDiscovery.title+'", but no business problems/outcomes were found in it. Type them below; the document stays linked to the SOW config.','info'); return; }
+    const hasRows=boRows.some(r=>(r.problem||'').trim()||(r.outcome||'').trim());
+    if(hasRows && !confirm('Replace the rows you already entered with the '+pairs.length+' found in the document?')){ boRows=boRows.concat(pairs); } else { boRows=pairs; }
+    renderBO();
+    showStatus('discStatus','Filled '+pairs.length+' row(s) from "'+selectedDiscovery.title+'". Review and edit before generating.','success');
+  }catch(e){ showStatus('discStatus','Could not read the document: '+e.message,'error'); }
+}
+
+function startBuilder(){
+  if(!parsedRows){ alert('Load a CPQ first'); return; }
+  if(!document.getElementById('packageSelect').value){ alert('Select a package'); return; }
+  onPackageChange();
+  if(!allSKUs.length){ alert('No Included SKUs found in that package column.'); return; }
+  numPhases=parseInt(document.getElementById('numPhases').value)||3;
+  skuPhase={}; allSKUs.forEach(s=>skuPhase[s.name]=1);
+  ensurePhaseMeta();
+  const ap=document.getElementById('apStart'); if(ap && !ap.value){ const d=new Date(); d.setDate(d.getDate()+14); ap.value=d.toISOString().slice(0,10); }   // ADDED
+  document.getElementById('builderSection').style.display='block';
+  renderAll();
+  window.scrollTo(0, document.getElementById('builderSection').offsetTop-40);
+}
+
+function ensurePhaseMeta(){
+  for(let p=1;p<=numPhases;p++) if(!phaseMeta[p]) phaseMeta[p]={start:'',end:'',pm:''};
+  Object.keys(skuPhase).forEach(k=>{ if(skuPhase[k]>numPhases) skuPhase[k]=numPhases; });
+}
+function onNumPhasesChange(){
+  numPhases=Math.max(1, Math.min(8, parseInt(document.getElementById('numPhases').value)||1));
+  document.getElementById('numPhases').value=numPhases;
+  ensurePhaseMeta(); renderAll();
+}
+function setPhase(sku,p){ skuPhase[sku]=p; renderAll(); }
+function renderAll(){ renderAlloc(); renderPhases(); renderRules(); apLiveCheck(); }
+
+function renderAlloc(){
+  const c=document.getElementById('skuAlloc'); c.innerHTML='';
+  allSKUs.forEach(s=>{
+    const row=document.createElement('div'); row.className='sku-row';
+    row.draggable=true; row.addEventListener('dragstart',ev=>{ if(ev.target.closest('.phase-btns')) return; ev.dataTransfer.setData('text/plain',s.name); ev.dataTransfer.effectAllowed='move'; });   // ADDED
+    const nm=document.createElement('div'); nm.className='sku-name'; nm.textContent=s.name;
+    const cat=document.createElement('span'); cat.className='sku-cat'; cat.textContent=s.category; nm.appendChild(cat);
+    const btns=document.createElement('div'); btns.className='phase-btns';
+    for(let p=1;p<=numPhases;p++){
+      const b=document.createElement('button'); b.className='phase-btn'+(skuPhase[s.name]===p?' active':''); b.textContent=p;
+      b.onclick=()=>setPhase(s.name,p);
+      btns.appendChild(b);
+    }
+    row.appendChild(nm); row.appendChild(btns); c.appendChild(row);
+  });
+}
+
+function renderPhases(){
+  const c=document.getElementById('phasesGrid'); c.innerHTML='';
+  for(let p=1;p<=numPhases;p++){
+    const meta=phaseMeta[p]||{start:'',end:'',pm:''};
+    const skus=allSKUs.filter(s=>skuPhase[s.name]===p);
+    const box=document.createElement('div'); box.className='phase-box';
+    const h=document.createElement('h3'); h.textContent='Phase '+p+(AP_CONST.PHASE_LABELS&&AP_CONST.PHASE_LABELS[p-1]?' — '+AP_CONST.PHASE_LABELS[p-1]:''); box.appendChild(h);
+    const pin=document.createElement('div'); pin.className='pin';
+    [['Start Date','start','MM/DD/YYYY'],['End Date','end','MM/DD/YYYY'],['PM Name','pm','Project Manager']].forEach(([lbl,field,ph])=>{
+      const l=document.createElement('label'); l.textContent=lbl; pin.appendChild(l);
+      const inp=document.createElement('input'); inp.type='text'; inp.placeholder=ph; inp.value=meta[field]||'';
+      inp.onchange=(e)=>{ phaseMeta[p][field]=e.target.value; };
+      pin.appendChild(inp);
+    });
+    box.appendChild(pin);
+    if(skus.length){ skus.forEach(s=>{ const d=document.createElement('div'); d.className='psku'; d.textContent=s.name;
+      d.draggable=true; d.addEventListener('dragstart',ev=>{ ev.dataTransfer.setData('text/plain',s.name); ev.dataTransfer.effectAllowed='move'; });   // ADDED
+      box.appendChild(d); }); }
+    else { const e=document.createElement('div'); e.className='pempty'; e.textContent='No SKUs assigned'; box.appendChild(e); }
+    // ADDED: drop target — move the dragged SKU into this phase
+    box.addEventListener('dragover',ev=>{ ev.preventDefault(); box.classList.add('drop'); });
+    box.addEventListener('dragleave',()=>box.classList.remove('drop'));
+    box.addEventListener('drop',ev=>{ ev.preventDefault(); box.classList.remove('drop'); const nm=ev.dataTransfer.getData('text/plain'); if(nm && skuPhase[nm]!==undefined) setPhase(nm,p); });
+    c.appendChild(box);
+  }
+}
+
+function renderRules(){
+  const c=document.getElementById('rulesList'); c.innerHTML='';
+  const has=(tok)=> allSKUs.some(s=> norm(s.name).includes(norm(tok))||norm(tok).includes(norm(s.name)) );
+  const phaseOf=(tok)=>{ const m=allSKUs.find(s=> norm(s.name).includes(norm(tok))||norm(tok).includes(norm(s.name)) ); return m?skuPhase[m.name]:null; };
+  const msgs=[];
+  RULES.forEach(r=>{
+    if(r.type==='requires'){
+      if(has(r.sku)){
+        const anyReq=(r.requires||[]).some(req=>has(req));
+        if(!anyReq){ msgs.push({sev:'warn', text:r.message}); }
+        else {
+          const sp=phaseOf(r.sku);
+          const present=(r.requires||[]).filter(req=>has(req));
+          const allLater=present.length && present.every(req=>{ const rp=phaseOf(req); return rp!=null&&sp!=null&&rp>sp; });
+          if(allLater) msgs.push({sev:'warn', text:r.message+' (place it in the same or an earlier phase)'});
+        }
+      }
+    } else if(r.type==='recommend_together'){
+      const present=(r.skus||[]).filter(x=>has(x));
+      if(present.length && present.length<(r.skus||[]).length) msgs.push({sev:'info', text:r.message});
+    } else if(r.type==='avoid_together'){
+      if((r.skus||[]).filter(x=>has(x)).length>=2) msgs.push({sev:'warn', text:r.message});
+    } else if(r.type==='phase_order'){
+      if(has(r.sku)){ const sp=phaseOf(r.sku);
+        if((r.before||[]).some(b=>{ const bp=phaseOf(b); return bp!=null&&sp!=null&&bp<sp; })) msgs.push({sev:'warn', text:r.message}); }
+    }
+  });
+  if(!msgs.length){ const d=document.createElement('div'); d.className='r ok'; d.textContent='No issues — all rules satisfied.'; c.appendChild(d); return; }
+  msgs.forEach(m=>{ const d=document.createElement('div'); d.className='r '+(m.sev==='warn'?'warn':'info'); d.textContent=(m.sev==='warn'?'⚠ ':'💡 ')+m.text; c.appendChild(d); });
+}
+
+// ===== ADDED: Auto-Recommend Phasing (engine in the script above) =====
+function apFmt(d){ return String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0')+'/'+d.getFullYear(); }
+function apCatOf(nm){ const s=allSKUs.find(x=>x.name===nm); return s?s.category:''; }
+function apCaps(){
+  return { CAP:Math.max(1,parseInt(document.getElementById('apCap').value)||AP_CONST.PHASE_CAPACITY||9),
+           CONC:Math.max(1,parseInt(document.getElementById('apConc').value)||AP_CONST.CONCURRENT_CAPACITY_THRESHOLD||4) };
+}
+function runAutoPhase(){
+  if(!allSKUs.length){ showStatus('apStatus','Load SKUs from the CPQ first.','error'); return; }
+  const {CAP,CONC}=apCaps();
+  const sv=document.getElementById('apStart').value;
+  const start=sv?new Date(sv+'T00:00:00'):new Date();
+  const names=allSKUs.map(s=>s.name);
+  let reg, lists, meta;
+  try{
+    reg=buildInternalReg(names,apCatOf).REG;
+    const pairing=apPairing(reg,names);
+    lists=apPack(reg,apTopo(reg,pairing,names),names,CAP);
+    meta=apSchedule(reg,lists,pairing,start,CONC);
+  }catch(e){ showStatus('apStatus','Could not compute phasing: '+e.message,'error'); return; }
+  let merged=false;
+  if(lists.length>8){ const tail=[].concat.apply([],lists.slice(7)); lists=lists.slice(0,7).concat([tail]); merged=true; }
+  numPhases=Math.max(1,lists.length); document.getElementById('numPhases').value=numPhases;
+  lists.forEach((ps,i)=>{
+    const a=new Date(Math.min.apply(null,ps.map(s=>meta[s].start.getTime())));
+    const b=new Date(Math.max.apply(null,ps.map(s=>meta[s].end.getTime())));
+    const keepPm=(phaseMeta[i+1]&&phaseMeta[i+1].pm)||'';
+    phaseMeta[i+1]={start:apFmt(a),end:apFmt(b),pm:keepPm};
+    ps.forEach(s=>skuPhase[s]=i+1);
+  });
+  renderAll();
+  const labels=AP_CONST.PHASE_LABELS||[];
+  showStatus('apStatus','Recommended '+numPhases+' phase(s) for '+names.length+' SKUs ('+lists.map((_,i)=>'P'+(i+1)+(labels[i]?' '+labels[i]:'')).join(' → ')+').'
+    +(merged?' Phases beyond 8 were merged into Phase 8.':'')+' Drag SKUs between phase boxes or use the phase buttons to adjust; PM names you entered are kept.','success');
+}
+function apLiveCheck(){
+  const c=document.getElementById('apChecks'); if(!c) return; c.innerHTML='';
+  if(!allSKUs.length) return;
+  const {CAP}=apCaps(); const names=allSKUs.map(s=>s.name);
+  let reg; try{ reg=buildInternalReg(names,apCatOf).REG; }catch(e){ return; }
+  const lists=[]; for(let p=1;p<=numPhases;p++) lists.push(names.filter(n=>skuPhase[n]===p));
+  const msgs=[];
+  lists.forEach((ps,i)=>{ const load=ps.reduce((t,x)=>t+reg[x].capacity,0); if(load>CAP) msgs.push(['warn','⚠ Phase '+(i+1)+' load is '+load+'/'+CAP+' — over the recommended capacity. Consider moving SKUs to a later phase.']); });
+  apDepWarn(reg,lists,names).forEach(x=>msgs.push(['warn','⚠ '+x]));
+  apPairing(reg,names).forEach(g=>{ const ph=[...new Set(g.map(n=>skuPhase[n]))].sort((a,b)=>a-b); if(g.length>1&&ph.length>1) msgs.push(['warn','🔗 Implement together: '+g.join(', ')+' (currently split across '+ph.map(p=>'P'+p).join(' / ')+').']); });
+  apVendor(reg,names).forEach(x=>msgs.push(['warn','🏢 '+x]));
+  const unresolved=names.filter(n=>!reg[n]._regKey && apCatOf(n)!=='Bundles & Misc');
+  if(unresolved.length) msgs.push(['info','💡 No registry phasing data for: '+unresolved.join(', ')+' — category-default timing is used.']);
+  if(!msgs.length) msgs.push(['ok','Phasing checks pass: prerequisites in order, must-pair SKUs together, within capacity.']);
+  msgs.forEach(m=>{ const d=document.createElement('div'); d.className='r '+m[0]; d.textContent=m[1]; c.appendChild(d); });
+}
+
+async function generateSOW(){
+  const pkgKey=document.getElementById('packageSelect').value;
+  const opt=document.getElementById('packageSelect').selectedOptions[0];
+  const pkgLabel=opt?opt.textContent:'';
+  if(!selectedCPQ||!pkgKey){ alert('Load a CPQ and pick a package'); return; }
+  const people={
+    primary_contact:{ name:val('sponsorName'), email:val('sponsorEmail'), phone:val('sponsorPhone') },
+    owner:{ name:val('aeName'), email:val('aeEmail'), phone:val('aePhone') },
+    se:{ name:val('seName'), email:val('seEmail'), phone:val('sePhone') }
+  };
+  const cfg={ customer:document.getElementById('customerName').value, package:pkgLabel,
+    opportunity: selectedOpportunity?{id:selectedOpportunity.Id,name:selectedOpportunity.Name}:{}, cpq:selectedCPQ.id, people, phases:[] };
+  // ADDED: business problems & outcomes + the linked discovery document
+  cfg.business_outcomes=boRows.map(r=>({problem:(r.problem||'').trim(),outcome:(r.outcome||'').trim()})).filter(r=>r.problem||r.outcome);
+  cfg.discovery_doc=selectedDiscovery?{id:selectedDiscovery.id,title:selectedDiscovery.title}:null;
+  for(let p=1;p<=numPhases;p++){
+    const meta=phaseMeta[p]||{};
+    cfg.phases.push({ phase:p, start:meta.start||'', end:meta.end||'', pm:meta.pm||'',
+      skus: allSKUs.filter(s=>skuPhase[s.name]===p).map(s=>({name:s.name, category:s.category})) });
+  }
+  if(cfg.phases.reduce((a,p)=>a+p.skus.length,0)===0){ alert('Assign at least one SKU to a phase.'); return; }
+  const btn=document.getElementById('genBtn'); btn.disabled=true; btn.textContent='Saving...';
+  showStatus('genStatus','Saving config to Google Drive...','info');
+  try{
+    const stamp=new Date().toISOString().replace(/[:.]/g,'-');
+    const safe=(cfg.customer||'client').replace(/[^A-Za-z0-9 ]/g,'');
+    const title='ELTROPY_SOW_CONFIG '+safe+' '+stamp;
+    await window.cowork.callMcpTool(DRIVE_CREATE,{ title, contentMimeType:'application/json', textContent:JSON.stringify(cfg,null,2), disableConversionToGoogleType:true });
+    btn.textContent='Building SOW...';
+    showStatus('genStatus','Config saved. Building the Word document now — it will appear in your chat shortly...','info');
+    try{
+      await window.cowork.runScheduledTask(BUILD_TASK);
+      showStatus('genStatus','SOW build started. The finished Word document (SOW - '+(cfg.customer||'Client')+') will be delivered to your chat in a moment.','success');
+    }catch(taskErr){
+      showStatus('genStatus','Config saved as "'+title+'", but the auto-build could not start ('+taskErr.message+'). In chat, say: "build the SOW from the latest config".','info');
+    }
+  }catch(e){ showStatus('genStatus','Could not save: '+e.message,'error'); }
+  finally{ btn.disabled=false; btn.textContent='Generate SOW'; }
+}
+
+</script>
+</body>
+</html>

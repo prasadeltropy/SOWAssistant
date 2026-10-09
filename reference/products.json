@@ -1,0 +1,1788 @@
+{
+  "meta": {
+    "title": "Eltropy Product Descriptions",
+    "version": "2.20",
+    "date": "August 28, 2026",
+    "note": "Restructured for consistency. Feature wording unchanged from source."
+  },
+  "change_log": [
+    [
+      "2.2",
+      "05/26/2025",
+      "Updated description for Remote Video Banking, Remote ID Verify",
+      "Prasad S"
+    ],
+    [
+      "2.3",
+      "05/28/2025",
+      "Removed eSign Inclusion from Video Banking",
+      "Prasad Shrotri"
+    ],
+    [
+      "2.4",
+      "06/06/2025",
+      "Added AI Assistant-Ask Eltropy description",
+      "Prasad S"
+    ],
+    [
+      "2.5",
+      "09/11/2025",
+      "Added descriptions for Eltropy Payments, Consumer Journeys - Departmental",
+      ""
+    ],
+    [
+      "2.6",
+      "12/05/2025",
+      "Added and updated fw descriptions",
+      ""
+    ],
+    [
+      "2.7",
+      "12/10/2025",
+      "Updated Automation Integration",
+      ""
+    ],
+    [
+      "2.8",
+      "12/11/2025",
+      "Added MS Teams Integration clarifications",
+      "Prasad S"
+    ],
+    [
+      "2.9",
+      "02/18/2026",
+      "Clarified MS Teams Integration",
+      "Prasad S"
+    ],
+    [
+      "2.10",
+      "03/31/2026",
+      "Added IDgo",
+      "Prasad S"
+    ],
+    [
+      "2.11",
+      "04/09/2026",
+      "Added Illuma Labs",
+      "Prasad Shrotri"
+    ],
+    [
+      "2.12",
+      "04/28/2026",
+      "Added Genesys ACD integration",
+      "Prasad Shrotri"
+    ],
+    [
+      "2.20",
+      "08/28/2026",
+      "Added Online Banking (Access Softek, Visifi, CU*Answers), Core Payments integrations (Corelation Keystone, Fiserv DNA, Fiserv Portico, Fiserv XP2, Symitar Episys), International Texting, and Hubspot CRM Communication Integration",
+      "Prasad Shrotri"
+    ],
+    {
+      "date": "2026-09-30",
+      "change": "Added Branded Calling (Twilio Branded Calling) and Branded Texting (RCS-based) to Solutions; features proposed for review."
+    },
+    {
+      "date": "2026-10-02",
+      "change": "Populated First Value Moment for 12 Solutions/Integrations from the SAFCU SOW (Branded Calling, Branded Texting, Appointment Management, Lobby Management, AI Virtual Agents - Voice, Secure Chat, AI Virtual Agents - Chat, AI Assistant - Ask Eltropy, Conversation Intelligence - All Channels, Eltropy eSignature, Remote Video Banking, CU*Answers Online Banking Integration).",
+      "author": "Prasad Shrotri"
+    }
+  ],
+  "named_user_definition": "A user with an account in Eltropy is considered a Named User. Named Users are authorized to use any of the Eltropy solutions.",
+  "categories": {
+    "Platform": [
+      {
+        "name": "Eltropy Unified Conversations Platform",
+        "aliases": [
+          "Platform",
+          "Digital Conversations Platform",
+          "Unified Conversations"
+        ],
+        "features": [
+          "Omni-Channel Management (Text, Secure Chat, Video, Voice+, Office Phone)",
+          "Skill-Based Routing & Omni-Channel Presence",
+          "Omni-Channel Conversation Thread and Unified Workspace",
+          "Automation & Intelligence AI Stack",
+          "Content & List Management",
+          "Role-Based Access Control",
+          "Reporting & Analytics",
+          "Integration, Security, and Compliance Framework",
+          "Screen pop",
+          "SSO / Single Sign On",
+          "Base API Framework"
+        ],
+        "notes": [
+          "Channels are not automatically included and will have to be purchased."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Named users can log in via SSO and manage conversations across the enabled omni-channel workspace, with role-based access and reporting confirmed in production."
+      }
+    ],
+    "Solutions": [
+      {
+        "name": "Appointment Management",
+        "aliases": [],
+        "features": [
+          "Video, Walk-In, and Phone Meetings",
+          "Outlook and Google Calendar Integration",
+          "Configure Multiple Services and Branch Locations",
+          "Configurable Text and Email Reminders",
+          "Personalized booking Shortcut links from Eltropy's Launcher"
+        ],
+        "notes": [],
+        "first_value_moment": "5 Successful Appointments booked by members/prospects and updated on the agents calendar",
+        "datasheet": true,
+        "acceptance_criteria": "A member books an appointment through a shortcut link, receives a text/email reminder, and the meeting is completed for at least 5 appointments across the configured services/locations."
+      },
+      {
+        "name": "All Digital Channels",
+        "aliases": [],
+        "features": [
+          "Live Help for website and mobile app (Supported OLB's)",
+          "Secure Chat",
+          "Text Messaging: 1:1 & 1:Many Texting; Secure Document Collection; Opt-In/Opt-Out Management; Reporting & Analytics; Auto Keywords Replies; Content Sharing; One-Time Password Phone Number Verification; vCard Sharing; MMS Support; Text Message Scheduling; PII Prevention and Redaction",
+          "Remote Video Banking: Team/Direct/Meeting Links; Conversation Panel with Video Channel; Built-in Patented E-Sign; Document Exchange; Post Call Surveys & Ratings; Allow Multiple Attendees to Join meeting; Chat during Video Meeting; Screensharing (No mobile browser screen sharing); Pre-loaded Content sharing through Slideshare; Support for patented E-Notary (Needs e-Notary Enabled); Text during Video Meeting (Needs Text Messaging Enabled); 100GB Built In Storage"
+        ],
+        "notes": [
+          "See Appendix for Usage Limitations"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "At least 5 member engagements are completed across the enabled channels (secure chat, text, video) with documents exchanged and reporting visible."
+      },
+      {
+        "name": "Co-browse",
+        "aliases": [],
+        "features": [
+          "Co-browse from Chat, Video and Phone engagements",
+          "Element Masking",
+          "Session Recording"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "An agent co-browses with a member from a chat/video/phone engagement with element masking active, and the session is recorded."
+      },
+      {
+        "name": "Conversation Intelligence - All Channels",
+        "aliases": [],
+        "features": [
+          "Analyze data from Eltropy Secure Chat, Text, Voice and Video Channels",
+          "Analyze data from voice recordings from any voice ACD",
+          "Transcribe Voice Calls from recordings",
+          "Discover PII Violation",
+          "Score all Engagements for CSAT, Sentiment & Adherence",
+          "Insights by Users, Departments & Channels",
+          "Discover New Intents for AI Automation"
+        ],
+        "notes": [],
+        "first_value_moment": "After a successful completion of 1 full day for Text or Chat or Voice or Video sessions, CI shows the top topics for members called Using CI, management trains the Agents for future improvements.",
+        "datasheet": true,
+        "acceptance_criteria": "Recorded engagements across channels are transcribed and scored for CSAT/sentiment/adherence, with PII violations and insights visible in the dashboard."
+      },
+      {
+        "name": "Conversation Intelligence - Secure Chat",
+        "aliases": [],
+        "features": [
+          "Support for data from Eltropy Secure Chat channel",
+          "Discover PII Violation",
+          "Score all Engagements for CSAT, Sentiment & Adherence",
+          "Insights by Users, Departments & Channels",
+          "Discover New Intents for IVA Automation"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Secure chat engagements are scored for CSAT/sentiment/adherence with insights by user/department visible."
+      },
+      {
+        "name": "Conversation Intelligence - Text",
+        "aliases": [],
+        "features": [
+          "Support for data from Eltropy Text channel",
+          "Discover PII Violation",
+          "Score all Engagements for CSAT, Sentiment & Adherence",
+          "Insights by Users, Departments & Channels",
+          "Discover New Intents for IVA Automation"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Text engagements are scored for CSAT/sentiment/adherence with insights by user/department visible."
+      },
+      {
+        "name": "Conversation Intelligence - Video",
+        "aliases": [],
+        "features": [
+          "Support for data from Video channel",
+          "Transcribe audio from recordings",
+          "Discover PII Violation",
+          "Score all Engagements for CSAT, Sentiment & Adherence",
+          "Insights by Users, Departments & Channels",
+          "Discover New Intents for IVA Automation"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Video recordings are transcribed and scored for CSAT/sentiment/adherence with insights visible."
+      },
+      {
+        "name": "Conversation Intelligence - Voice",
+        "aliases": [],
+        "features": [
+          "Support for data from voice channel",
+          "Transcribe Audio Calls from recordings",
+          "Discover PII Violation",
+          "Score all Engagements for CSAT, Sentiment & Adherence",
+          "Insights by Users, Departments & Channels",
+          "Discover New Intents for IVA Automation"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Voice recordings are transcribed and scored for CSAT/sentiment/adherence with insights visible."
+      },
+      {
+        "name": "In-Branch Video Banking",
+        "aliases": [],
+        "features": [
+          "Two Screen & Single Screen Video Support",
+          "Whitelabel",
+          "Real-time Document Collection",
+          "Screensharing (No mobile browser screen sharing)",
+          "Pre-loaded Content sharing through Slideshare",
+          "Post Call Surveys & Ratings"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A two-screen in-branch video session is completed with real-time document collection and a post-call survey captured."
+      },
+      {
+        "name": "AI Virtual Agents - All Channels",
+        "aliases": [
+          "AI Virtual Agents-All Channels (Secure Chat and Voice)"
+        ],
+        "features": [
+          "Support for Eltropy Text and Secure Chat channels",
+          "Support for Third Party Voice ACD via SIP Transfer",
+          "Support for Eltropy Voice channel (when available)",
+          "FAQ Automation (Non-Authenticated)",
+          "Real-Time Dashboard & Analytics",
+          "Transfer to Human Agents"
+        ],
+        "notes": [
+          "Authenticated Intent Automation & Integrations NOT included"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The virtual agent resolves FAQ intents across the enabled channels and successfully transfers to a human agent, with activity visible in the real-time dashboard."
+      },
+      {
+        "name": "AI Virtual Agents - Chat",
+        "aliases": [
+          "AI Agents-Chat",
+          "AI Agent-Chat",
+          "AI Agents - Chat"
+        ],
+        "features": [
+          "Integrates with Eltropy Secure Chat channel",
+          "Generative AI / Knowledge based AI Chat Bot",
+          "Support for Custom Intent",
+          "Real-Time Dashboard & Analytics",
+          "Transfer to Human Agents"
+        ],
+        "notes": [
+          "Authenticated Intent Automation & Integrations NOT included"
+        ],
+        "first_value_moment": "Instant accurate answer to a real user question for the first 5 interactions. Reduced handle time visible in the first day",
+        "datasheet": false,
+        "acceptance_criteria": "The generative chat bot answers custom intents on secure chat and transfers to a human agent, with activity visible in the dashboard."
+      },
+      {
+        "name": "AI Virtual Agents - Chat FAQ",
+        "aliases": [],
+        "features": [
+          "Support for Eltropy Secure Chat channel",
+          "FAQ Automation (Non-Authenticated) - Up To 50 intents",
+          "Real-Time Dashboard & Analytics NOT included",
+          "Transfer to Human Agents"
+        ],
+        "notes": [
+          "Authenticated Intent Automation & Integrations NOT included"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The chat FAQ bot answers up to 50 configured intents on secure chat and transfers to a human agent."
+      },
+      {
+        "name": "AI Virtual Agents - Text",
+        "aliases": [],
+        "features": [
+          "Support for Eltropy Text channel",
+          "FAQ Automation (Non-Authenticated)",
+          "Real-Time Dashboard & Analytics",
+          "Transfer to Human Agents"
+        ],
+        "notes": [
+          "Authenticated Intent Automation & Integrations NOT included"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The virtual agent answers FAQ intents on the text channel and transfers to a human agent, with activity visible in the dashboard."
+      },
+      {
+        "name": "AI Virtual Agents - Voice",
+        "aliases": [
+          "AI Agent Voice",
+          "AI Agent-Voice",
+          "AI Agents - Voice",
+          "AI Agents-Voice"
+        ],
+        "features": [
+          "Support for Third Party Voice ACD via SIP Transfer",
+          "Support for Eltropy Voice channel (when available)",
+          "FAQ Automation (Non-Authenticated)",
+          "Real-Time Dashboard & Analytics",
+          "Transfer to Human Agents"
+        ],
+        "notes": [
+          "Authenticated Intent Automation & Integrations NOT included"
+        ],
+        "first_value_moment": "Instant accurate answer to a real user question for the first 5 interactions And/OR Reduced handle time visible in the first day",
+        "datasheet": false,
+        "acceptance_criteria": "The virtual agent answers FAQ intents on voice via SIP transfer and hands off to a human agent, with activity visible in the dashboard."
+      },
+      {
+        "name": "AI Assistant - Ask Eltropy",
+        "aliases": [],
+        "features": [
+          "Intelligent Knowledge Retrieval with Citations",
+          "AI Writing and Translation Assistance",
+          "AI Translate: Supports translation for both incoming and outgoing communications, aiding multilingual interactions",
+          "Secure External Web Search (BETA)",
+          "User-Based Knowledge Access Control",
+          "Supports multiple Data Sources Integration",
+          "Customizable Responses and Intents",
+          "Multilingual Support",
+          "Multiple Assistant Instances",
+          "Built-In Safety and Compliance: Incorporates AI guardrails to ensure safe, accurate responses while managing sensitive conversations responsibly",
+          "Microsoft Teams Integration",
+          "AI Assistant Insights",
+          "Feedback Collection"
+        ],
+        "notes": [],
+        "first_value_moment": "Instant accurate answer to a real agent question for first 5 interactions",
+        "datasheet": false,
+        "acceptance_criteria": "An agent retrieves an answer with citations from the configured knowledge sources and uses AI writing/translation assistance within the workspace."
+      },
+      {
+        "name": "Lobby Management",
+        "aliases": [],
+        "features": [
+          "Virtual Queuing",
+          "Digitally check-in Lobby Visitors: Self-Service or Agent-Assisted",
+          "Position in Queue Visibility",
+          "Convert Queues into Future Meetings",
+          "Next-in-line Alert",
+          "Branch Traffic Insights",
+          "Visitor Intelligence",
+          "Estimated Wait Time*"
+        ],
+        "notes": [],
+        "first_value_moment": "5 Successful Lobby CheckIns and completing the Lobby Checkins",
+        "datasheet": true,
+        "acceptance_criteria": "A visitor checks in (self-service or agent-assisted), is placed in the virtual queue with an estimated wait time, and is served, for at least 5 visitors."
+      },
+      {
+        "name": "Remote Video Banking",
+        "aliases": [],
+        "features": [
+          "Remote Video Meetings",
+          "Allow Multiple Attendees to Join meeting",
+          "Team/Direct/Meeting Links",
+          "Built-in Patented E-Sign",
+          "Document Exchange",
+          "Chat during Video Meeting",
+          "Screensharing (No mobile browser screen sharing)",
+          "Pre-loaded Content sharing through Slideshare",
+          "Support for patented E-Notary (Needs e-Notary Enabled)",
+          "Text during Video Meeting (Needs Text Messaging Enabled)",
+          "Post Call Surveys & Ratings",
+          "100GB Built In Storage"
+        ],
+        "notes": [],
+        "first_value_moment": "5 Video Banking sessions completed where the agent is able to assist the consumer with real service/new accounts needs.",
+        "datasheet": true,
+        "acceptance_criteria": "A remote video meeting is completed with document exchange and built-in e-sign, and a post-call survey is captured."
+      },
+      {
+        "name": "Remote Video Check Deposit",
+        "aliases": [],
+        "features": [
+          "Teller Deposit",
+          "Increased Deposit Limits",
+          "Reduced Check Holds"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member completes a teller-assisted remote check deposit with the configured deposit limits and hold rules applied."
+      },
+      {
+        "name": "Reputation Management",
+        "aliases": [],
+        "features": [
+          "Sent Review Requests by Text",
+          "Collect and Analyze Reviews",
+          "Auto Send Review Requests (Milestones)",
+          "Respond to Reviews",
+          "Users & Branch Leaderboard"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Review requests are auto-sent by text on a milestone, and at least one review is collected and responded to via the platform."
+      },
+      {
+        "name": "Secure Chat",
+        "aliases": [],
+        "features": [
+          "Live Help for website and mobile app",
+          "Skill Based Routing",
+          "Secure Chat Channel",
+          "Secure Document Exchange",
+          "Share Rich Content in chat",
+          "Pre-loaded Content sharing via Slideshare",
+          "Screensharing",
+          "One-Time Password Phone Number Verification",
+          "Leave a Message through the Conversation Panel on Website",
+          "Context Settings for Conversation Panel",
+          "PII Prevention and Redaction"
+        ],
+        "notes": [],
+        "first_value_moment": "5 chat sessions completed where the agent assisted the consumer in regards with their Queries.",
+        "datasheet": false,
+        "acceptance_criteria": "At least 5 secure chat sessions are completed with document exchange and skill-based routing confirmed."
+      },
+      {
+        "name": "Text Messaging",
+        "aliases": [],
+        "features": [
+          "1:1 & 1:Many Texting",
+          "Secure Document Collection",
+          "Opt-In/Opt-Out Management",
+          "Reporting & Analytics",
+          "Auto Keywords Replies",
+          "Content Sharing",
+          "One-Time Password Phone Number Verification",
+          "vCard Sharing",
+          "MMS Support",
+          "Text Message Scheduling",
+          "PII Redaction"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "At least 5 two-way text conversations are completed with opt-in/opt-out honored and reporting visible."
+      },
+      {
+        "name": "RCS Messaging",
+        "aliases": [],
+        "features": [
+          "RCS Message Sending - Support for individual and text Messaging Campaigns on top of Eltropy's current SMS framework",
+          "Delivery & Read Receipt Management - Message status tracking and retries",
+          "Fallback to SMS - Automatic transition to SMS if RCS is not supported",
+          "Branded Messaging - Display sender name, logo, and verification badge",
+          "Interactive Elements - Enable quick-reply buttons for suggested actions",
+          "Read Receipts - Real-time engagement tracking",
+          "Message Analytics & Reporting - Track delivery, open rates, and customer interactions",
+          "Compliance - Adherence to TCPA regulations for compliance with opt-in and opt-out"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "An RCS branded message with interactive elements is delivered with read receipts, and falls back to SMS when unsupported."
+      },
+      {
+        "name": "Branded Texting",
+        "aliases": [
+          "RCS Branded Texting",
+          "Branded Text Messaging",
+          "Branded SMS"
+        ],
+        "features": [
+          "Branded Sender Profile - Messages show the credit union's name, logo and verified-sender badge instead of an unknown number",
+          "Rich, Interactive Messages - Quick-reply buttons and suggested actions members can tap to respond",
+          "Delivery & Read Receipts - Real-time status tracking for every message",
+          "Automatic SMS Fallback - Members whose device or carrier doesn't support RCS still receive the message as SMS",
+          "Engagement Analytics - Track delivery, read and reply rates across 1:1 and campaign messages"
+        ],
+        "notes": [
+          "Delivered over RCS; same capability as RCS Messaging.",
+          "Brand and sender verification with carriers must be completed before launch."
+        ],
+        "first_value_moment": "5 Successful Text Messages with Brand and Logo",
+        "datasheet": false,
+        "acceptance_criteria": "A branded message displays the verified business name and logo on a supported device, reports delivery and read receipts, and falls back to SMS where RCS is unsupported."
+      },
+      {
+        "name": "Text to Talk",
+        "aliases": [],
+        "features": [
+          "Make phone calls from Eltropy Launcher (No Hard Phone needed)",
+          "Record and playback the calls",
+          "If using Eltropy Conversation Analytics, analyze the recorded calls"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "An agent places and records a call from the Launcher without a hard phone, and the recording is available for playback."
+      },
+      {
+        "name": "Video Verify",
+        "aliases": [],
+        "features": [
+          "Real-Time ID Verification (Powered by Plaid)",
+          "Selfie Check",
+          "Fraud Ring check",
+          "Send Direct Meeting Links to Video Meetings (No Inbound Video Calls)",
+          "Support for Built-in Patented E-Sign (eSign subscription needed)",
+          "Support ID Verification on Text, Chat, Video (Requires channels to be enabled)"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "A member's identity is verified in real time (Plaid) with selfie and fraud-ring checks passing, on the enabled channel."
+      },
+      {
+        "name": "Voice+",
+        "aliases": [],
+        "features": [
+          "Inbound and outbound PSTN Voice Calling",
+          "Contact Center Call Flows",
+          "Hold, Transfer & Conference",
+          "Skill-Based Routing",
+          "DTMF IVR",
+          "Live Dashboard",
+          "Barge/Monitor",
+          "Reporting and Analytics",
+          "Phone Numbers (New and Existing Number Porting)",
+          "Support for 911 and E911",
+          "Calls Recording",
+          "ScreenPop",
+          "After-Call Work (ACW)",
+          "Supervisory Live Dashboard",
+          "Voice Mail",
+          "Call Flow Designer"
+        ],
+        "notes": [],
+        "first_value_moment": "5 complete, frictionless interactions - AI Voice/IVR -> routing -> agent -> Tag & Notes -> Transcript -> Automated QA",
+        "datasheet": true,
+        "acceptance_criteria": "5 complete interactions flow AI Voice/IVR to routing to agent with tagging, transcript, and automated QA captured."
+      },
+      {
+        "name": "Consumer Journeys - Departmental",
+        "aliases": [],
+        "features": [
+          "Consumer Journeys are to be used only for Collections department",
+          "Automate the collections member journey, based on the parameters received in the sFTP file (ex. Heloc vs Cards etc)",
+          "Setup multiple campaigns that can use email and text as channels for message delivery",
+          "Ability to see the Journey performance"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A collections journey is triggered from the sFTP file and runs a multi-campaign email/text sequence with performance visible."
+      },
+      {
+        "name": "Eltropy Payments",
+        "aliases": [],
+        "features": [
+          "Ability to accept ACH Payment for Loans Repayment",
+          "Ability to accept Debit Cards for Loans Repayment",
+          "Ability to accept payment wallets (Apple and Google) for Loans Repayment",
+          "Web Payment portal",
+          "Payment Webportal will be made available from Eltropy to be embedded/integrated within the CU Website",
+          "Members will be able to make the loan repayment via Web Payment Portal",
+          "Settlement Funds: Settlement funds will be sent by NUVEI either to Savings, Checking or GL Account"
+        ],
+        "notes": [],
+        "first_value_moment": "5 Payments completed end to end including the GL settlement.",
+        "datasheet": false,
+        "acceptance_criteria": "5 loan payments are completed end-to-end (ACH/debit/wallet) with GL settlement confirmed."
+      },
+      {
+        "name": "Office Phones",
+        "aliases": [],
+        "features": [
+          "Inbound and outbound PSTN Voice Calling",
+          "Hold, Transfer & Conference",
+          "DID Issuance, Extension Management",
+          "Extension to Extension Dial",
+          "International Calling Support (Profile Based)*",
+          "Call Recording (Optional)*",
+          "Personal Voice Mail",
+          "Hunt Groups/Ring All",
+          "Global & Personal Address Book*",
+          "Hard Phones Support (Limited/Select Models)",
+          "Integration with MS Teams as a Teams App (Optional)"
+        ],
+        "notes": [
+          "*Roadmap/Beta Features"
+        ],
+        "first_value_moment": "5 successful inbound, 5 successful outbound and/or 5 successful transfers without call drop by at least 2-3 users.",
+        "datasheet": false,
+        "acceptance_criteria": "5 successful inbound and 5 outbound calls (and/or transfers) are completed without call drops by 2-3 users."
+      },
+      {
+        "name": "Eltropy E-Notary (Remote Online Notary)",
+        "aliases": [
+          "E-Notary",
+          "Remote Online Notary",
+          "ENotary"
+        ],
+        "features": [
+          "Secure Identity Verification with KBA",
+          "Recorded, Real-Time Audio/Video Session",
+          "Audit Logging (Signer Actions, IP/Geo Locations)",
+          "Digital Journal tracking",
+          "Tamper-Evident Digital Documents",
+          "Secure download of signed documents for signers"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A notarization session is completed with KBA identity verification, recorded A/V, digital journal entry, and a tamper-evident signed document downloaded."
+      },
+      {
+        "name": "Eltropy ID Verification",
+        "aliases": [
+          "ID Verification",
+          "Identity Verification"
+        ],
+        "features": [
+          "Instant identity verification against government issued databases",
+          "Instant Verification on the Fraud Ring",
+          "Selfie based Liveliness check"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member's identity is verified against government databases with fraud-ring and selfie liveliness checks passing."
+      },
+      {
+        "name": "Eltropy eSignature",
+        "aliases": [
+          "eSignature",
+          "eSign",
+          "ESign"
+        ],
+        "features": [
+          "Support eSignature on Chat, Text, Video (Channel Subscription needed)",
+          "Support ability to create, edit and delete templates",
+          "Support ability to add multiple documents in same envelope",
+          "Support multiple Signers and Signing Order for Signers",
+          "Audit Logging (Signer Actions, IP/Geo Locations)",
+          "Tamper-Evident Digital Documents",
+          "Secure download of signed documents for signers"
+        ],
+        "notes": [],
+        "first_value_moment": "5 Banking sessions completed where the agent is able to assist the consumer with real E-Signature services to a completed Signature.",
+        "datasheet": false,
+        "acceptance_criteria": "A multi-document envelope is signed by multiple signers in order, with audit logging and secure download of the signed documents."
+      },
+      {
+        "name": "International Texting",
+        "aliases": [],
+        "features": [
+          "Support Texting for International Countries."
+        ],
+        "notes": [
+          "Needs Texting SKU"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Successfully send and receive a text to/from a member in a supported international country (Texting SKU enabled)."
+      },
+      {
+        "name": "Branded Calling",
+        "aliases": [
+          "Branded Caller ID",
+          "Enhanced Branded Calling",
+          "Twilio Branded Calling"
+        ],
+        "features": [
+          "Verified Business Name - Display the credit union's approved name (up to 35 characters) on members' phones for outbound calls from Eltropy numbers",
+          "Logo & Call Reason - Show the brand logo and a short call reason (up to 64 characters) on supported handsets (Enhanced Branded Calling)",
+          "Vetted Caller Profile - Outbound numbers are registered under a verified business profile, helping calls look trustworthy and avoid being ignored as unknown",
+          "Works Across Outbound Use Cases - Applies to collections, lending, fraud-alert and service callbacks placed from Voice+ and Office Phones"
+        ],
+        "notes": [
+          "Powered by Twilio Branded Calling; currently delivered on T-Mobile and Verizon networks.",
+          "Logo and call reason display depends on the member's carrier and handset; call reason is not shown on iOS devices.",
+          "Business profile and number vetting must be completed before branded calls go live."
+        ],
+        "first_value_moment": "5 Successful calls with Brand and Logo",
+        "datasheet": false,
+        "acceptance_criteria": "A test outbound call from an Eltropy number shows the approved business name (plus logo and call reason on a supported handset) on a T-Mobile or Verizon device."
+      }
+    ],
+    "Integrations": [
+      {
+        "name": "Automation Integrations",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from supported Core",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party Middleware solution. Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Adobe Campaign Communication Integration",
+        "aliases": [],
+        "features": [
+          "1:Many Text Alerts",
+          "Content Analytics"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "Akuvo Communication Integration",
+        "aliases": [],
+        "features": [
+          "Automated Payment past due Alerts",
+          "Incoming Alert/notification to the members in Akuvo",
+          "Sync conversation history to Akuvo",
+          "Member Conversation Analytics in Akuvo"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "API Access Only Integration",
+        "aliases": [],
+        "features": [
+          "Send on-demand Text alerts using Send Text API",
+          "Sync delivery statuses via Webhooks",
+          "One Time Password (OTP) API"
+        ],
+        "notes": [
+          "APIs can be used for multiple integrations"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "Corelation Keystone Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Corelation Keystone",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Corelation Keystone Communication Integration",
+        "aliases": [],
+        "features": [
+          "Automated Text Alerts Based on changes to accounts on Corelation Keystone",
+          "Opt-In/Opt-Out Management for Marketing",
+          "Real-time Alerts and Batch Alerts",
+          "Sync Text History to Corelation Keystone",
+          "Customize Alerts in Keystone and Send via Eltropy"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "CUProdigy Communication Integration",
+        "aliases": [],
+        "features": [
+          "Real-Time Text Alerts",
+          "Opt-In/Opt-Out Management"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "DocuSign Esign Integration",
+        "aliases": [],
+        "features": [
+          "Templates for E-Sign Documents",
+          "Upload Documents for E-Signature directly from Eltropy",
+          "Notification for link view and clicked",
+          "2-Factor Authentication",
+          "Automated Text to Members with Secure Links to Download E-Signed Documents"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "A document is sent for signature, signed, and the signed copy is delivered/synced successfully."
+      },
+      {
+        "name": "Disaster Recovery Connectivity",
+        "aliases": [],
+        "features": [
+          "Allows the credit unions to have VPN connectivity for the Secondary/Backup/Disaster Recovery (DR) environments"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "DNC Integration",
+        "aliases": [],
+        "features": [
+          "Integration with DNC Registry to prevent Texting to phone #s in DNC Registry"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "Fiserv DNA Automation Integration",
+        "aliases": [
+          "FIS Miser Core Automation Integration",
+          "FIS Miser Core Automation Integratio"
+        ],
+        "features": [
+          "Automate intents that require data from Fiserv DNA",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution)."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Fiserv DNA CMC (Legacy) Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Fiserv DNA CMC",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Fiserv Portico Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Fiserv Portico",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Fiserv Portico Communication Integration",
+        "aliases": [],
+        "features": [
+          "Initiate Eltropy Launcher from Fiserv",
+          "Sync contacts from Fiserv to Eltropy"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "Fiserv Horizon Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Fiserv Horizon",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Fiserv Spectrum Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Fiserv Spectrum",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Fiserv XP2 Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Fiserv XP2",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "ICE (Ellie Mae) Encompass Communication Integration",
+        "aliases": [],
+        "features": [
+          "Launch Eltropy Launcher from Encompass",
+          "Automated Text Alerts Based on different Milestones (Pizza Tracker)",
+          "Collect Documents via Secure Link",
+          "Auto Sync Text History & Documents to Encompass"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "IMMeSign Esign Integration",
+        "aliases": [],
+        "features": [
+          "Notification for link view and clicked",
+          "2-Way Text Messaging"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "A document is sent for signature, signed, and the signed copy is delivered/synced successfully."
+      },
+      {
+        "name": "Integration Framework Package",
+        "aliases": [],
+        "features": [
+          "Initiate Eltropy Launcher from third-party UX with single sign-on",
+          "Send batch Text alerts by uploading files with contacts to our SFTP site",
+          "Sync delivery statuses via Webhooks",
+          "Sync all text messages sent and received via webhooks",
+          "Send on-demand Text alerts using Send Text API",
+          "One Time Password (OTP) APIs",
+          "Request documents using secure unique links",
+          "Sync documents via Webhooks",
+          "Interaction APIs and Webhooks",
+          "Sync one-way contacts to Eltropy from a Third Party system. Opt-in/opt-out are synced",
+          "Sync contacts with Eltropy via Daily batch process",
+          "Includes Generic Secure Data Export"
+        ],
+        "notes": [
+          "Pricing is per integration"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "BYOB (Bring Your Own Bot)",
+        "aliases": [],
+        "features": [
+          "Integration for secure chat with AI bots like Posh, Interface, Ameli, etc.",
+          "This integration is not supported from behind online banking"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "Jack Henry CIF 20/20 Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Jack Henry CIF 20/20",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Jack Henry Core Director Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Jack Henry Core Director",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Jack Henry Silverware Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Jack Henry Silverware",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Jack Henry Symitar Episys Automation Integration",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Jack Henry Symitar Episys",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported.",
+          "This includes Symitar Communication Integration and Symitar Payments Integration"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "MeridianLink (Account) Opening Communication Integration",
+        "aliases": [],
+        "features": [
+          "Launch Eltropy from MeridianLink",
+          "Automated Text Alerts Based on different Milestones (Pizza Tracker)",
+          "Collect Documents via Secure Links",
+          "Auto Sync Text History & Documents to MeridianLink",
+          "Text to E-sign documents"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "MeridianLink Consumer (LoansPQ) Communication Integration",
+        "aliases": [],
+        "features": [
+          "Launch Eltropy from MeridianLink",
+          "Automated Text Alerts Based on Milestones (Pizza Tracker)",
+          "Collect Documents via Secure Links",
+          "Auto Sync Text History & Documents to MeridianLink"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "MeridianLink Collect Communication Integration",
+        "aliases": [],
+        "features": [
+          "Initiate Eltropy Launcher from MeridianLink Collect",
+          "Automated Text Alerts",
+          "Opt-In/Opt-Out Management",
+          "Sync Text History to MeridianLink Collect",
+          "Payments via Text"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "MessagePay Payment Integration",
+        "aliases": [],
+        "features": [
+          "Text Secure Payment Links & Personalized Payment Reminders",
+          "Track Member Logins & Payments",
+          "Generate Amount Collection Reports"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "5 payments are completed end-to-end via text with successful collection/settlement reporting."
+      },
+      {
+        "name": "NICE inContact Communication Integration",
+        "aliases": [],
+        "features": [
+          "Initiate Eltropy Launcher from NICE inContact",
+          "2-Factor Authentication",
+          "2-Way Texting"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "Origence Communication Integration",
+        "aliases": [],
+        "features": [
+          "Initiate Eltropy Launcher from arcOS",
+          "Collect Documents via Secure Link",
+          "Auto Sync Documents to arcOS",
+          "Initiate Eltropy conversational panel from arc DX (Secure Chat SKU is mandatory)",
+          "Automated Text Alerts Based on different Milestones (Pizza Tracker)"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "Partner Integration Framework Package",
+        "aliases": [
+          "Akuvo/CU Prodigy/Prisma Campaigns/ShareTec/With Clutch-Integration Framework Package-Partner Use"
+        ],
+        "features": [
+          "These integrations are provided by partners. This Integration Framework Package is needed to use the partner-provided integration."
+        ],
+        "notes": [
+          "Applies to Akuvo, CU Prodigy, Prisma Campaigns, ShareTec, and Clutch partner integrations"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "Alkami (Online) Banking Communication Integration",
+        "aliases": [],
+        "features": [
+          "Eltropy website JavaScript code pre-integrated with Alkami Digital Banking Platform",
+          "Single Sign-On Integration with Alkami",
+          "Agent will be able to recognize the authentication of an incoming request, including the visitor's name, phone number, and email address"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "An authenticated member launches Eltropy from the digital banking platform via SSO, and the agent sees the member's verified identity."
+      },
+      {
+        "name": "Jack Henry Banno (Online) Banking Communication Integration",
+        "aliases": [],
+        "features": [
+          "Eltropy website JavaScript code pre-integrated with Banno",
+          "Single Sign-On Integration with Banno",
+          "Agent will be able to recognize the authentication of an incoming request, including the visitor's name, phone number, and email address"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "An authenticated member launches Eltropy from the digital banking platform via SSO, and the agent sees the member's verified identity."
+      },
+      {
+        "name": "Q2 Digital (Online) Banking Communication Integration",
+        "aliases": [],
+        "features": [
+          "Eltropy website JavaScript code pre-integrated with Q2",
+          "Single Sign-On Integration with Q2",
+          "Authenticated visitor's name, phone number, and email shown to agents in Eltropy Launcher"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "An authenticated member launches Eltropy from the digital banking platform via SSO, and the agent sees the member's verified identity."
+      },
+      {
+        "name": "Candescent Digital (Online) Banking Communication Integration",
+        "aliases": [],
+        "features": [
+          "Eltropy website JavaScript code pre-integrated with Candescent",
+          "Single Sign-On Integration with Candescent",
+          "Authenticated visitor's name, phone number, and email shown to agents in Eltropy Launcher"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "An authenticated member launches Eltropy from the digital banking platform via SSO, and the agent sees the member's verified identity."
+      },
+      {
+        "name": "Salesforce Marketing Cloud Communication Integration",
+        "aliases": [],
+        "features": [
+          "1:Many Text Alerts and Marketing Campaigns",
+          "Sync Conversation with Salesforce Contacts",
+          "Personalized Messages with up to 10 customizable fields",
+          "Track Shared Content"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "Sharetec Communication Integration",
+        "aliases": [],
+        "features": [
+          "Text Banking (Simple text commands)",
+          "E-Alerts and Notification"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "sFTP Data Extracts and Reports",
+        "aliases": [],
+        "features": [
+          "Export the out of box reports via sFTP at specific time",
+          "Includes Generic Secure Data Export (Coming Soon)"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "Single Sign-On (SSO)",
+        "aliases": [
+          "SSO",
+          "Single Sign-On",
+          "Single Sign On"
+        ],
+        "features": [
+          "Use one set of credentials from your SAML 2.0 based preferred Identity Provider to log in to Eltropy Solutions"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A user logs into Eltropy using the customer's SAML 2.0 identity provider with a single set of credentials."
+      },
+      {
+        "name": "SWBC CPI Communication Integration",
+        "aliases": [],
+        "features": [
+          "Send renewal notices via Text",
+          "Reminders"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "SWIVEL (SWBC Payments) Payment Integration",
+        "aliases": [],
+        "features": [
+          "Initiate Eltropy Launcher from SWBC (SWIVEL)",
+          "Payments via Text",
+          "Generate Amount Collection Report",
+          "Automated Text Alerts",
+          "Track Member Logins and Payments"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "5 payments are completed end-to-end via text with successful collection/settlement reporting."
+      },
+      {
+        "name": "Symitar Episys Communication Integration",
+        "aliases": [],
+        "features": [
+          "Initiate Eltropy Launcher from Symitar",
+          "Automated Text Alerts Based on changes to accounts on Symitar Episys",
+          "Opt-In/Opt-Out Management",
+          "Sync Text History to Symitar Episys",
+          "2-Factor Authentication"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "Symitar Episys Automation Integration - Voice Only",
+        "aliases": [],
+        "features": [
+          "Automate intents that require data from Symitar Episys",
+          "DTMF input-based authentication",
+          "Transfer Authentication results and Member information via SIP"
+        ],
+        "notes": [
+          "Supported by 3rd party (Middleware solution). Voice authentication is not supported."
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "A member is authenticated via DTMF and their verified data is transferred to the agent via SIP in the customer's environment."
+      },
+      {
+        "name": "Temenos Collections (Akcelerant) Communication Integration",
+        "aliases": [],
+        "features": [
+          "Initiate Eltropy Launcher from Temenos",
+          "Automated Text Alerts Based on Temenos' dialer queues",
+          "Opt-In/Opt-Out Management",
+          "Sync Text History to Temenos",
+          "Payments via Text"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "Temenos Origination (LOS) Communication Integration",
+        "aliases": [],
+        "features": [
+          "Initiate Eltropy Launcher from Temenos",
+          "Automated Text Alerts Based on changes to Loan Milestones",
+          "Opt-In/Opt-Out Management",
+          "Sync Text History to Temenos (Outbound Text only)",
+          "Collect & Sync Documents to Temenos"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "Automated text alerts fire from the source system and conversation/document history syncs back for at least 5 members."
+      },
+      {
+        "name": "Genesys ACD (Automated Call Distribution) Integration",
+        "aliases": [
+          "Genesys ACD Integration"
+        ],
+        "features": [
+          "Route the incoming chat, text, Video Request to Genesys for queuing",
+          "Once Agent accepts a request in Genesys, launch Eltropy from within Genesys for Chat, Text & Video",
+          "Route the incoming AI Voice Request via SIP Transfers",
+          "\"Interaction ID\" is passed on SIP Transfer",
+          "Launch Eltropy Launcher from Genesys",
+          "2-Factor Authentication",
+          "2-Way Texting"
+        ],
+        "notes": [
+          "Requires configuration from Genesys/Genesys VAR to setup the integration.",
+          "No writeback to Genesys"
+        ],
+        "first_value_moment": "5 successful transfers and/or AI Voice calls between Eltropy & Genesys.",
+        "datasheet": false,
+        "acceptance_criteria": "5 successful transfers and/or AI Voice calls pass between Eltropy and Genesys with the Interaction ID carried on SIP transfer."
+      },
+      {
+        "name": "Microsoft Teams App Integration (No SBC)",
+        "aliases": [],
+        "features": [
+          "Inbound/Outbound dialing using Eltropy's Office Phone from within MS Teams",
+          "Use Eltropy's AI Assistant within MS Teams",
+          "Warm/Cold Transfer to Eltropy's Teams App from Eltropy's Voice+ platform to Extensions",
+          "Warm/Cold Transfer to Eltropy's Teams App using DID's",
+          "Sync Teams Users with Eltropy",
+          "Sync Teams users status with Eltropy Status"
+        ],
+        "notes": [
+          "Requires SSO Integration. Does not support Extension based transfers."
+        ],
+        "first_value_moment": "5 successful call transfers and/or conference calls between Office Phone User and Voice+ Users",
+        "datasheet": false,
+        "acceptance_criteria": "5 successful call transfers/conference calls occur between an Office Phone user and Voice+ users through the Teams app."
+      },
+      {
+        "name": "Microsoft Teams App Integration (SBC)",
+        "aliases": [],
+        "features": [
+          "Sync Teams Users with Eltropy",
+          "Sync Teams users status with Eltropy Status",
+          "Transfer to Teams for 10-Digit Phone Number (DID)",
+          "Transfer to Teams for extensions setup using Teams",
+          "Call recording after transition to MS Teams",
+          "Eltropy does not manage the DID or extensions hosted on Teams"
+        ],
+        "notes": [
+          "Requires SSO Integration. Does not support Extension based transfers.",
+          "Requires SBC to be setup with MS Teams Provider"
+        ],
+        "first_value_moment": "5 successful call transfers and/or conference calls between Voice+ and Teams Users",
+        "datasheet": false,
+        "acceptance_criteria": "5 successful call transfers/conference calls occur between Voice+ and Teams users via the configured SBC."
+      },
+      {
+        "name": "Fiserv DNA Core Payments Integration",
+        "aliases": [
+          "DNA Core Payments Integration",
+          "Fiserv DNA Payments Integration"
+        ],
+        "features": [
+          "Post payment to the Fiserv DNA core in real time",
+          "Reverse payment from the core",
+          "Post payment and fees to a separate GL"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "For 5 test transactions, payments post to the core in real time and settle to the correct GL, and a reversal is processed successfully."
+      },
+      {
+        "name": "Access Softek Online Banking Integration",
+        "aliases": [],
+        "features": [
+          "Eltropy website JavaScript code pre-integrated with Access Softek",
+          "Single Sign-On Integration with Access Softek",
+          "Authenticated visitor's name, phone number, and email shown to agents in Eltropy Launcher"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "An authenticated member launches Eltropy from Access Softek via SSO, and the agent sees the member's verified name, phone and email."
+      },
+      {
+        "name": "Visifi Online Banking Integration",
+        "aliases": [
+          "Visifi Online Banking integration"
+        ],
+        "features": [
+          "Eltropy website JavaScript code pre-integrated with Visifi",
+          "Single Sign-On Integration with Visifi",
+          "Authenticated visitor's name, phone number, and email shown to agents in Eltropy Launcher"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "An authenticated member launches Eltropy from Visifi via SSO, and the agent sees the member's verified name, phone and email."
+      },
+      {
+        "name": "CU*Answers Online Banking Integration",
+        "aliases": [
+          "CU*Answers Online Banking integration"
+        ],
+        "features": [
+          "Eltropy website JavaScript code pre-integrated with CU*Answers",
+          "Single Sign-On Integration with CU*Answers",
+          "Authenticated visitor's name, phone number, and email shown to agents in Eltropy Launcher"
+        ],
+        "notes": [],
+        "first_value_moment": "If the member chooses to connect with ‘Live Agent’ interaction is transferred over to agent as “Authenticated Interaction”",
+        "datasheet": false,
+        "acceptance_criteria": "An authenticated member launches Eltropy from CU*Answers via SSO, and the agent sees the member's verified name, phone and email."
+      },
+      {
+        "name": "Corelation Keystone Core Payments Integration",
+        "aliases": [
+          "Correlation Keystone Core Payments Integration"
+        ],
+        "features": [
+          "Post payment to Corelation Keystone in real time",
+          "Reverse payment from the core",
+          "Post payment and fees to a separate GL"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "For 5 test transactions, payments post to the core in real time and settle to the correct GL, and a reversal is processed successfully."
+      },
+      {
+        "name": "Fiserv Portico Core Payments Integration",
+        "aliases": [],
+        "features": [
+          "Post payment to the Fiserv Portico core in real time",
+          "Reverse payment from the core",
+          "Post payment and fees to a separate GL"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "For 5 test transactions, payments post to the core in real time and settle to the correct GL, and a reversal is processed successfully."
+      },
+      {
+        "name": "Fiserv XP2 Core Payments Integration",
+        "aliases": [],
+        "features": [
+          "Post payment to the Fiserv XP2 core in real time",
+          "Reverse payment from the core",
+          "Post payment and fees to a separate GL"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "For 5 test transactions, payments post to the core in real time and settle to the correct GL, and a reversal is processed successfully."
+      },
+      {
+        "name": "Symitar Episys Core Payments Integration",
+        "aliases": [],
+        "features": [
+          "Post payment to the Symitar Episys core in real time",
+          "Reverse payment from the core",
+          "Post payment and fees to a separate GL"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "For 5 test transactions, payments post to the core in real time and settle to the correct GL, and a reversal is processed successfully."
+      },
+      {
+        "name": "Hubspot CRM Communication Integration",
+        "aliases": [],
+        "features": [],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "[To be provided]"
+      }
+    ],
+    "Bundles & Misc": [
+      {
+        "name": "Text Messaging Bundle",
+        "aliases": [],
+        "features": [
+          "Authorizes the customer to use additional Texts up to the limit of the bundle",
+          "Text Messaging Bundle available for 100K and 1 Million Texts Per Year"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The additional usage authorized by the bundle is available and consumption is tracked against the bundle limit."
+      },
+      {
+        "name": "IVA Voice Connect Bundle",
+        "aliases": [],
+        "features": [
+          "Voice Connect for Intelligent Virtual Agent to connect IVA to customer's Voice ACD",
+          "Authorizes the customer to use additional voice connect mins up to the limit of the bundle",
+          "Bundle available for 10K, 100K, and 1 Million Mins Per Year"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The additional usage authorized by the bundle is available and consumption is tracked against the bundle limit."
+      },
+      {
+        "name": "CI Voice Recording Processing Bundle",
+        "aliases": [],
+        "features": [
+          "Transcription and analysis of the call recording",
+          "Authorizes the customer to additional voice call recording up to the limit of the bundle",
+          "Bundle available for 10K, 100K, and 1 Million Mins Per Year"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The additional usage authorized by the bundle is available and consumption is tracked against the bundle limit."
+      },
+      {
+        "name": "Number Scrubbing",
+        "aliases": [],
+        "features": [
+          "Identify line type for a phone number"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": true,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "Short Code - Standard",
+        "aliases": [],
+        "features": [
+          "Special telephone number designed for high-throughput, two-way messaging",
+          "Number assigned by provider"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The provisioned short code sends and receives high-throughput two-way messages successfully."
+      },
+      {
+        "name": "Short Code - Vanity",
+        "aliases": [],
+        "features": [
+          "Special telephone number designed for high-throughput, two-way messaging",
+          "Customer can select the number"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The provisioned short code sends and receives high-throughput two-way messages successfully."
+      },
+      {
+        "name": "Toll and Toll-Free Phone Numbers",
+        "aliases": [],
+        "features": [
+          "Provisioning new phone numbers for SMS and Voice Calling"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "sFTP Data Extracts and Reports (Misc)",
+        "aliases": [],
+        "features": [
+          "Export data and Reports via sFTP in CSV format",
+          "Export data with a specific defined structure (flat or tree)",
+          "Data will not be transformed and will be included as-is",
+          "Includes Documents, Raw Interactions feed only"
+        ],
+        "notes": [
+          "Does not include document transformation"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "Video Retention",
+        "aliases": [],
+        "features": [
+          "Retain video recordings",
+          "Option to retain recordings of 30 or 90 days"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Recordings are retained for the selected duration and remain retrievable within that window."
+      },
+      {
+        "name": "Audio Retention",
+        "aliases": [],
+        "features": [
+          "Retain audio recordings",
+          "Option to retain recordings of 90 days"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "Recordings are retained for the selected duration and remain retrievable within that window."
+      },
+      {
+        "name": "Premier Support",
+        "aliases": [],
+        "features": [
+          "Guaranteed First Response time SLA based on customer-defined issue severity",
+          "Expanded 24/7 coverage",
+          "Dedicated Teams/Slack Channel during business hours for implementations",
+          "Named Technical Account Manager (TAM)"
+        ],
+        "notes": [],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The first-response SLA, 24/7 coverage, dedicated channel, and named TAM are confirmed active for the customer."
+      }
+    ],
+    "Authentication & Biometrics Add-ons": [
+      {
+        "name": "IDgo (Device Biometrics) - Annual Fee (Unlimited Authentications)",
+        "aliases": [
+          "IDgo",
+          "IDgo device biometrics"
+        ],
+        "features": [
+          "Support AI Voice triggered consumer authentication via device Biometrics",
+          "Support Agent triggered Consumer authentication via device Biometrics",
+          "Support AI Chat triggered consumer authentication via device Biometrics* (Q326)",
+          "Support Agent led Enrollment of the consumer in Device Biometrics",
+          "Pass Authentication details to Agent when the call is transferred to Agent",
+          "Reporting on success and failures on authentication"
+        ],
+        "notes": [
+          "Actual authentication services are provided by IDgo",
+          "IDgo platform is iframed within Eltropy"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "IllumaSHIELD - Full Suite (Authentication + Fraud Prevention)",
+        "aliases": [],
+        "features": [
+          "Support AI Voice triggered consumer authentication via voice Biometrics",
+          "Support Agent triggered Consumer authentication via voice Biometrics",
+          "Support Agent led Enrollment of the consumer in Voice Biometrics",
+          "Pass Authentication details to Agent when the call is transferred to Agent in Eltropy's Voice+ platform",
+          "Reporting on success and failures on authentication"
+        ],
+        "notes": [
+          "Actual authentication services are provided by Illuma Labs",
+          "Illuma platform is iframed within Eltropy"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "IllumaSHIELD - Limited Features (Authentication Only)",
+        "aliases": [],
+        "features": [
+          "Support AI Voice triggered consumer authentication via voice Biometrics",
+          "Support Agent triggered Consumer authentication via voice Biometrics",
+          "Support Agent led Enrollment of the consumer in Voice Biometrics",
+          "Pass Authentication details to Agent when the call is transferred to Agent in Eltropy's Voice+ platform",
+          "Reporting on success and failures on authentication"
+        ],
+        "notes": [
+          "Actual authentication services are provided by Illuma Labs",
+          "Illuma platform is iframed within Eltropy"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      },
+      {
+        "name": "Pindrop Caller Authentication and Deepfake",
+        "aliases": [],
+        "features": [
+          "Support AI Voice triggered consumer authentication via voice Biometrics",
+          "Support Agent triggered Consumer authentication via voice Biometrics",
+          "Support Agent led Enrollment of the consumer in Voice Biometrics",
+          "Pass Authentication details to Agent when the call is transferred to Agent in Eltropy's Voice+ platform",
+          "Reporting on success and failures on authentication"
+        ],
+        "notes": [
+          "Actual authentication services are provided by Pindrop"
+        ],
+        "first_value_moment": null,
+        "datasheet": false,
+        "acceptance_criteria": "The capability is verified working in the customer's production environment with a successful end-to-end completion by end users."
+      }
+    ]
+  }
+}
